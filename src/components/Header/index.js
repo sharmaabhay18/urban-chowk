@@ -59,7 +59,7 @@ class Header extends Component {
         </Link>
         <div className={styles.locationButtonContainer}>
           <TiLocation className={styles.locationIconStyle} color="white" />
-          <Button className={styles.headerButtonStyle}>Hoboken</Button>
+          <Button className={styles.headerButtonStyle}>Hoboken, NJ</Button>
         </div>
       </React.Fragment>
     );
