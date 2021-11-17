@@ -4,11 +4,12 @@ import CategoryCard from "components/CategoryCard";
 import ItemCard from "components/ItemCard";
 import ItemDetail from "components/ItemDetail";
 import TestimonialCard from "components/TestimonialCard";
+import Carousel from "components/Carousel";
 
 function Home() {
   return (
     <div>
-      <h1>Home</h1>
+      <Carousel />
       <CategoryCard
         title="Chicken"
         subTitle="Good source of Protein"
