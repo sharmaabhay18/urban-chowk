@@ -5,6 +5,7 @@ import ItemCard from "components/ItemCard";
 import ItemDetail from "components/ItemDetail";
 import TestimonialCard from "components/TestimonialCard";
 import Carousel from "components/Carousel";
+import AddressCard from "components/AddressCard";
 
 function Home() {
   return (
@@ -38,6 +39,14 @@ function Home() {
         description="10 Places In Delhi To Score The Freshest Meat"
         avatar="https://firebasestorage.googleapis.com/v0/b/youngenginer-1c1ab.appspot.com/o/blogs%2Fthumbsup.png?alt=media&token=97e37a01-b3f1-49ad-86c3-c0f8020e8668"
         imgSrc="https://firebasestorage.googleapis.com/v0/b/youngenginer-1c1ab.appspot.com/o/blogs%2Fhf_blog.png?alt=media&token=6da337f1-ea5e-4ed0-b261-a380c7a583f9"
+      />
+      <AddressCard
+        name="Abhay Sharma"
+        address="710 Jefferson Street"
+        landmark="St Ann Chruch"
+        handleOnClick={() => console.log("clicked")}
+        state="NJ"
+        city="Hoboken"
       />
     </div>
   );
