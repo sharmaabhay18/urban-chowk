@@ -1,4 +1,10 @@
-import firebase from "firebase";
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB2odgYKZnrhyZk-vxgts55P_Re6CXyznA",
@@ -10,80 +16,76 @@ const firebaseConfig = {
   measurementId: "G-VTG90816CK",
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-const auth = app.auth();
-const db = app.firestore();
-const googleProvider = new firebase.auth.GoogleAuthProvider();
+initializeApp(firebaseConfig);
+const auth = getAuth();
 
-// Social Login: Google
-const signInWithGoogle = async () => {
+// const db = app.firestore();
+// const googleProvider = auth.GoogleAuthProvider();
+
+const registerWithEmailAndPassword = async (email, password) => {
   try {
-    const res = await auth.signInWithPopup(googleProvider);
+    const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    const query = await db
-      .collection("users")
-      .where("uid", "==", user.uid)
-      .get();
-    if (query.docs.length === 0) {
-      await db.collection("users").add({
-        uid: user.uid,
-        name: user.displayName,
-        authProvider: "google",
-        email: user.email,
-      });
-    }
+    user["authProvider"] = "local";
+    return user;
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    throw err;
   }
 };
 
 //Normal Sign In with Email and Password
-const signInWithEmailAndPassword = async (email, password) => {
+const signInNormal = async (email, password) => {
   try {
-    await auth.signInWithEmailAndPassword(email, password);
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
-  }
-};
-
-const registerWithEmailAndPassword = async (name, email, password) => {
-  try {
-    const res = await auth.createUserWithEmailAndPassword(email, password);
+    const res = await signInWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    await db.collection("users").add({
-      uid: user.uid,
-      name,
-      authProvider: "local",
-      email,
-    });
+    user["authProvider"] = "local";
+    return user;
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    throw err;
   }
 };
 
-const sendPasswordResetEmail = async (email) => {
+const resetPassword = async (email) => {
   try {
-    await auth.sendPasswordResetEmail(email);
-    alert("Password reset link sent!");
+    await sendPasswordResetEmail(auth, email);
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    throw err;
   }
 };
 
-const logout = () => {
-  auth.signOut();
-};
+// Social Login: Google
+// const signInWithGoogle = async () => {
+//   try {
+//     const res = await auth.signInWithPopup(googleProvider);
+//     const user = res.user;
+//     const query = await db
+//       .collection("users")
+//       .where("uid", "==", user.uid)
+//       .get();
+//     if (query.docs.length === 0) {
+//       await db.collection("users").add({
+//         uid: user.uid,
+//         name: user.displayName,
+//         authProvider: "google",
+//         email: user.email,
+//       });
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     alert(err.message);
+//   }
+// };
+
+// const logout = () => {
+//   auth.signOut();
+// };
 
 export {
   auth,
-  db,
-  signInWithGoogle,
-  signInWithEmailAndPassword,
+  // signInWithGoogle,
+  // signInWithEmailAndPassword,
   registerWithEmailAndPassword,
-  sendPasswordResetEmail,
-  logout,
+  signInNormal,
+  resetPassword,
+  // logout,
 };

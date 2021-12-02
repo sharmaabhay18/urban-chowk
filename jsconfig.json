@@ -5,8 +5,7 @@
       "@/*": ["src/*"],
       "assets/*": ["src/assets/*"],
       "components/*": ["src/components/*"],
-      "actions/*": ["src/redux/actions/*"],
-      "reducers/*": ["src/redux/reducers/*"],
+      "redux/*": ["src/redux/*"],
       "stylesheets/*": ["src/stylesheets/*"],
       "pages/*": ["src/pages/*"],
       "utils/*": ["src/utils/*"]

@@ -10,7 +10,7 @@ import SearchBar from "components/SearchBar";
 import Button from "components/Button";
 
 import imageConstants from "utils/imageConstants";
-import config from "utils/config";
+import config from "utils/configConstant";
 
 import NavigationBar from "./navigationBar";
 import styles from "./header.module.scss";
