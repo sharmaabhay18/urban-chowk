@@ -32,6 +32,16 @@ export const ChangePasswordSchema = Yup.object().shape({
     ),
 });
 
+export const EditProfileSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "Name is too short!")
+    .max(50, "Name is too long!")
+    .required("Name is required"),
+  mobile: Yup.string()
+    .min(10, "Phone number is too short!")
+    .required("Phone number is required"),
+});
+
 export const SignUpSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Name is too short!")

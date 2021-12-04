@@ -2,7 +2,7 @@ import Types from "utils/types";
 import config from "utils/configConstant";
 import agent from "config/agent";
 
-import { signInNormal } from "utils/firebase";
+import { signInNormal, logout } from "utils/firebase";
 
 const loginAction =
   ({ email, password }, history) =>
@@ -58,4 +58,24 @@ const loginAction =
     }
   };
 
-export { loginAction };
+const logoutAction = () => async (dispatch) => {
+  dispatch({
+    type: Types.LOGOUT.LOGOUT_ACTION_LOADING,
+    payload: null,
+  });
+
+  try {
+    await logout();
+
+    dispatch({
+      type: Types.LOGOUT.LOGOUT_ACTION_SUCCESS,
+      payload: null,
+    });
+  } catch (error) {
+    dispatch({
+      type: Types.LOGOUT.LOGOUT_ACTION_FAILURE,
+      payload: null,
+    });
+  }
+};
+export { loginAction, logoutAction };

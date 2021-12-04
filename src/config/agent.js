@@ -30,7 +30,7 @@ const requests = {
         return res;
       })
       .catch((res) => {
-        return res;
+        throw res;
       });
   },
 
@@ -52,7 +52,7 @@ const requests = {
         return res;
       })
       .catch((res) => {
-        return res;
+        throw res.response;
       });
   },
 
@@ -63,7 +63,7 @@ const requests = {
         return res;
       })
       .catch((res) => {
-        return res;
+        throw res;
       });
   },
 };
@@ -82,6 +82,23 @@ const Auth = {
       return await requests.get("user/login", token);
     } catch (e) {
       throw e;
+    }
+  },
+};
+
+const User = {
+  getInfo: async () => {
+    try {
+      return await requests.get("user/");
+    } catch (error) {
+      throw error;
+    }
+  },
+  updateUser: async (payload) => {
+    try {
+      return await requests.patch("user/", payload);
+    } catch (error) {
+      throw error;
     }
   },
 };
@@ -115,4 +132,5 @@ export default {
   Auth,
   URL,
   Testimonial,
+  User,
 };

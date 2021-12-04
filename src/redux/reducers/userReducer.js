@@ -8,43 +8,46 @@ const initialState = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
   switch (action.type) {
-    case Types.LOGIN.LOGIN_ACTION_LOADING:
+    case Types.USER.GET_USER_ACTION_LOADING:
       return {
         ...state,
         apiError: false,
         fetching: true,
       };
-    case Types.LOGIN.LOGIN_ACTION_SUCCESS:
+    case Types.USER.GET_USER_ACTION_SUCCESS:
       return {
         ...state,
         fetching: false,
         apiError: false,
-        loggedInUser: { ...action.payload },
+        userPayload: { ...action.payload },
       };
-    case Types.LOGIN.LOGIN_ACTION_FAILURE:
+    case Types.USER.GET_USER_ACTION_FAILURE:
       return {
         ...state,
         fetching: false,
         apiError: true,
-        loggedInUser: { ...action.payload },
+        userPayload: { ...action.payload },
       };
-    case Types.LOGOUT.LOGOUT_ACTION_LOADING:
+
+    case Types.USER.UPDATE_USER_ACTION_LOADING:
       return {
         ...state,
         apiError: false,
         fetching: true,
       };
-    case Types.LOGOUT.LOGOUT_ACTION_SUCCESS:
+    case Types.USER.UPDATE_USER_ACTION_SUCCESS:
       return {
         ...state,
         fetching: false,
         apiError: false,
+        userPayload: { ...action.payload },
       };
-    case Types.LOGOUT.LOGOUT_ACTION_FAILURE:
+    case Types.USER.UPDATE_USER_ACTION_FAILURE:
       return {
         ...state,
         fetching: false,
         apiError: true,
+        userPayload: { ...action.payload },
       };
     default:
       return {

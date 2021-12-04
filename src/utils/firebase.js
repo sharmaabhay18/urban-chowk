@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  signOut,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -53,6 +54,14 @@ const resetPassword = async (email) => {
   }
 };
 
+const logout = async () => {
+  try {
+    return await signOut(auth);
+  } catch (error) {
+    throw error;
+  }
+};
+
 // Social Login: Google
 // const signInWithGoogle = async () => {
 //   try {
@@ -76,10 +85,6 @@ const resetPassword = async (email) => {
 //   }
 // };
 
-// const logout = () => {
-//   auth.signOut();
-// };
-
 export {
   auth,
   // signInWithGoogle,
@@ -87,5 +92,5 @@ export {
   registerWithEmailAndPassword,
   signInNormal,
   resetPassword,
-  // logout,
+  logout,
 };
