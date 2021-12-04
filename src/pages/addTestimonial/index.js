@@ -25,7 +25,7 @@ const AddTestimonial = ({ addTestimonialAction, apiError, fetching }) => {
 
   useEffect(() => {
     isAdminLoggedIn(history);
-  }, []);
+  }, [history]);
 
   const renderButton = () => {
     return (

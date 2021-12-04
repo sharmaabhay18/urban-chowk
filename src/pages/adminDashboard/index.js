@@ -11,7 +11,7 @@ const AdminDashboard = ({ userPayload }) => {
 
   useEffect(() => {
     isAdminLoggedIn(history);
-  }, []);
+  }, [history]);
 
   return (
     <div className={styles.mainContainer}>

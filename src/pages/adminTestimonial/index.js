@@ -22,7 +22,7 @@ const AdminTestimonial = ({
   useEffect(() => {
     isAdminLoggedIn(history);
     getTestimonialAction();
-  }, []);
+  }, [getTestimonialAction, history]);
 
   const renderData = () => {
     return (
