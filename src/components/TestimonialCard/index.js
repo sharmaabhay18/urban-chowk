@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Button from "components/Button";
 
 import styles from "./testimonialCard.module.scss";
 
 export default class TestimonialCard extends Component {
   render() {
-    const { imgSrc, name, description, avatar } = this.props;
+    const { imgSrc, name, description, avatar, isDelete, handleDelete } =
+      this.props;
     return (
       <div className={styles.testimonialCardContainer}>
         <img
@@ -25,6 +27,21 @@ export default class TestimonialCard extends Component {
           <h6 className={styles.testimonialCardDescriptionStyle}>
             {description}
           </h6>
+          {isDelete && (
+            <div
+              style={{
+                margin: "10px 5px",
+              }}
+            >
+              <Button
+                onClick={handleDelete}
+                variant="primary"
+                className={styles.buttonStyle}
+              >
+                Delete
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -36,4 +53,6 @@ TestimonialCard.protoTypes = {
   description: PropTypes.string.isRequired,
   avatar: PropTypes.string,
   imgSrc: PropTypes.string,
+  isDelete: PropTypes.bool,
+  handleDelete: PropTypes.func,
 };

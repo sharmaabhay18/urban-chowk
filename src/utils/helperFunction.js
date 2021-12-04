@@ -8,6 +8,20 @@ const isUserAuthenticated = (history) => {
   }
   return null;
 };
+
+const isAdminLoggedIn = (history) => {
+  const data = localStorage.getItem(config.ROLE);
+  if (data === "customer") {
+    return history.push("/");
+  }
+
+  if (data) {
+    return null;
+  }
+
+  return history.push("/");
+};
+
 const toastOption = {
   position: "bottom-center",
   autoClose: 3000,
@@ -39,4 +53,9 @@ const notifyErrorToast = (message, timeout) => {
   );
 };
 
-export { isUserAuthenticated, notifySuccessToast, notifyErrorToast };
+export {
+  isAdminLoggedIn,
+  isUserAuthenticated,
+  notifySuccessToast,
+  notifyErrorToast,
+};

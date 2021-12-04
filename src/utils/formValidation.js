@@ -59,3 +59,17 @@ export const SignUpSchema = Yup.object().shape({
     )
     .oneOf([Yup.ref("password"), null], "Password must match"),
 });
+
+export const AddTestimonialScehma = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "Name is too short!")
+    .max(50, "Name is too long!")
+    .required("Name is required"),
+  icon: Yup.string().min(2, "Icon is too short!").required("Icon is required"),
+  description: Yup.string()
+    .min(2, "Description is too short!")
+    .required("Description is required"),
+  image_url: Yup.string()
+    .min(2, "Image url is too short!")
+    .required("Image url is required"),
+});

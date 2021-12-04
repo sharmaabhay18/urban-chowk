@@ -5,7 +5,7 @@ import config from "utils/configConstant";
 import { registerWithEmailAndPassword } from "utils/firebase";
 
 const signupAction =
-  ({ name, email, password, mobile }, history) =>
+  ({ name, email, password, mobile, role }, history) =>
   async (dispatch) => {
     dispatch({
       type: Types.SIGNUP.SIGNUP_ACTION_LOADING,
@@ -14,17 +14,26 @@ const signupAction =
     try {
       const userCreated = await registerWithEmailAndPassword(email, password);
       const accessToken = userCreated.accessToken;
-    localStorage.setItem(config.AUTH_TOKEN, accessToken);
+      localStorage.setItem(config.AUTH_TOKEN, accessToken);
       const userPayload = {
         email: userCreated.email,
         name: name,
         mobile,
         uid: userCreated.uid,
         authProvider: userCreated.authProvider,
+        role,
       };
 
       await agent.Auth.signUp(userPayload);
-      history.push("/");
+
+      if (role === "admin") {
+        history.push("/admin-dashboard");
+        localStorage.setItem(config.ROLE, "admin");
+      } else {
+        history.push("/");
+        localStorage.setItem(config.ROLE, "customer");
+      }
+
       dispatch({
         type: Types.SIGNUP.SIGNUP_ACTION_SUCCESS,
         payload: userPayload,

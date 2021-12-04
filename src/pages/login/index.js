@@ -11,21 +11,13 @@ import styles from "./login.module.scss";
 import LoginForm from "./loginForm";
 
 class Login extends Component {
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.userPayload !== this.props.userPayload) {
-  //     const { history, userPayload } = this.props;
-
-  //     userPayload && userPayload.success && history.replace("/");
-  //   }
-  // }
-
   componentDidMount() {
     const { history } = this.props;
     isUserAuthenticated(history);
   }
 
   render() {
-    const { loginAction, fetching, apiError, userPayload } = this.props;
+    const { loginAction, fetching, apiError, userPayload, role } = this.props;
 
     return (
       <div className={styles.loginMainContainer}>
@@ -34,6 +26,7 @@ class Login extends Component {
           fetching={fetching}
           apiError={apiError}
           userPayload={userPayload}
+          role={role}
         />
       </div>
     );

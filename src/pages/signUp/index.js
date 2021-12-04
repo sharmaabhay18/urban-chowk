@@ -12,10 +12,11 @@ import styles from "./signUp.module.scss";
 class SignUp extends Component {
   componentDidMount() {
     const { history } = this.props;
+
     isUserAuthenticated(history);
   }
   render() {
-    const { signupAction, fetching, apiError, userPayload, history } =
+    const { signupAction, fetching, apiError, userPayload, history, role } =
       this.props;
 
     return (
@@ -26,6 +27,7 @@ class SignUp extends Component {
           apiError={apiError}
           userPayload={userPayload}
           history={history}
+          role={role}
         />
       </div>
     );

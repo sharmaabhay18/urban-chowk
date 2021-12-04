@@ -1,5 +1,6 @@
 import Types from "utils/types";
 import config from "utils/configConstant";
+import agent from "config/agent";
 
 import { signInNormal } from "utils/firebase";
 
@@ -21,7 +22,19 @@ const loginAction =
         uid: loggedUser.uid,
         authProvider: loggedUser.authProvider,
       };
-      history.push("/");
+
+      const data = await agent.Auth.login(accessToken);
+      const userRole = data?.data?.data?.role;
+      userPayload["role"] = userRole;
+
+      if (userRole === "admin") {
+        history.push("/admin-dashboard");
+        localStorage.setItem(config.ROLE, "admin");
+      } else {
+        history.push("/");
+        localStorage.setItem(config.ROLE, "customer");
+      }
+
       dispatch({
         type: Types.LOGIN.LOGIN_ACTION_SUCCESS,
         payload: userPayload,

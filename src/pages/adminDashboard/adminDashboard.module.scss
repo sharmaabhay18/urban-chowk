@@ -1,0 +1,17 @@
+.mainContainer {
+  display: flex;
+  margin: 40px 100px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.buttonStyle {
+  margin: 0px 5px;
+}

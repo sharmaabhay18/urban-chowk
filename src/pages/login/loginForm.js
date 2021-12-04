@@ -42,11 +42,12 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { apiError, userPayload, loginAction } = this.props;
+    const { apiError, userPayload, loginAction, role } = this.props;
 
     const form = {
       email: "",
       password: "",
+      role: role,
     };
 
     const handleApiCall = (values) => {

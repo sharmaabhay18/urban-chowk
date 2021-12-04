@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import config from "../utils/configConstant";
 //This will check, which urls to use
 const develop = true;
 
@@ -19,6 +19,9 @@ if (develop) {
   URL = Object.assign({}, CLOUD.SERVER);
 }
 
+const authToken = localStorage.getItem(config.AUTH_TOKEN);
+axios.defaults.headers.common["Authorization"] = `Bearer ${authToken}`;
+
 const requests = {
   get: (url, tokenForAPI) => {
     return axios
@@ -31,9 +34,9 @@ const requests = {
       });
   },
 
-  post: (url, body) => {
+  post: (url, body, tokenForAPI) => {
     return axios
-      .post(URL.API_ROOT + url, body)
+      .post(URL.API_ROOT + url, body, tokenForAPI)
       .then((res) => {
         return res;
       })
@@ -52,6 +55,17 @@ const requests = {
         return res;
       });
   },
+
+  delete: (url) => {
+    return axios
+      .delete(URL.API_ROOT + url)
+      .then((res) => {
+        return res;
+      })
+      .catch((res) => {
+        return res;
+      });
+  },
 };
 
 const Auth = {
@@ -62,10 +76,43 @@ const Auth = {
       throw e;
     }
   },
+  login: async (token) => {
+    try {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      return await requests.get("user/login", token);
+    } catch (e) {
+      throw e;
+    }
+  },
+};
+
+const Testimonial = {
+  getAll: async () => {
+    try {
+      return await requests.get("testimonial/");
+    } catch (error) {
+      throw error;
+    }
+  },
+  add: async (payload) => {
+    try {
+      return await requests.post("testimonial/add", payload);
+    } catch (error) {
+      throw error;
+    }
+  },
+  delete: async (id) => {
+    try {
+      return await requests.delete(`testimonial/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   Auth,
   URL,
+  Testimonial,
 };

@@ -23,14 +23,14 @@ export default class SignUpForm extends Component {
   };
 
   render() {
-    const { apiError, userPayload, signupAction, history } = this.props;
-
+    const { apiError, userPayload, signupAction, history, role } = this.props;
     const form = {
       name: "",
       email: "",
       mobile: "",
       password: "",
       confirmPassword: "",
+      role: role ? role : "customer",
     };
 
     const handleApiCall = (values) => {
