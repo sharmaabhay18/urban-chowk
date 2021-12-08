@@ -3,6 +3,7 @@ import config from "utils/configConstant";
 
 const isUserAuthenticated = (history) => {
   const data = localStorage.getItem(config.AUTH_TOKEN);
+
   if (data) {
     return history.push("/");
   }

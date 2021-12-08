@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import Avatar from "react-avatar-edit";
 import { Formik, Form, Field } from "formik";
 
+import config from "utils/configConstant";
+
 import {
   getStorage,
   ref,
@@ -78,6 +80,9 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    const { history } = this.props;
+    const data = localStorage.getItem(config.AUTH_TOKEN);
+    if (!data) return history.push("/");
     this.handleSpinner(true);
     this.props.getUserInfoAction(this.handleSpinner);
   }

@@ -83,3 +83,13 @@ export const AddTestimonialScehma = Yup.object().shape({
     .min(2, "Image url is too short!")
     .required("Image url is required"),
 });
+
+export const AddCouponScehma = Yup.object().shape({
+  code: Yup.string()
+    .min(2, "Code is too short!")
+    .max(50, "Code is too long!")
+    .required("Code is required"),
+  discount: Yup.string()
+    .min(1, "Discount is too short!")
+    .required("Discount is required"),
+});

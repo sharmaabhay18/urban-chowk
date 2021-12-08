@@ -15,7 +15,8 @@ import AdminDashboard from "pages/adminDashboard";
 import AdminTestimonial from "pages/adminTestimonial";
 import AddTestimonial from "pages/addTestimonial";
 import Profile from "pages/account/profile";
-
+import AdminCoupon from "pages/adminCoupon";
+import AddCoupon from "pages/addCoupon";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import Error from "components/Error";
@@ -47,6 +48,8 @@ function App(props) {
           <Route exact path="/admin-dashboard" component={AdminDashboard} />
           <Route exact path="/admin-testimonial" component={AdminTestimonial} />
           <Route exact path="/add-testimonial" component={AddTestimonial} />
+          <Route exact path="/add-coupon" component={AddCoupon} />
+          <Route exact path="/admin-coupon" component={AdminCoupon} />
           <Route
             exact
             path="/admin-singup"

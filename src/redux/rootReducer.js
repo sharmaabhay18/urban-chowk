@@ -5,6 +5,7 @@ import forgotPasswordReducer from "redux/reducers/forgetPasswordReducer";
 import testimonialReducer from "redux/reducers/testimonialReducer";
 import spinnerReducer from "redux/reducers/spinnerReducer";
 import userReducer from "redux/reducers/userReducer";
+import couponReducer from "redux/reducers/couponReducer";
 
 const rootReducer = combineReducers({
   signupReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   testimonialReducer,
   spinnerReducer,
   userReducer,
+  couponReducer,
 });
 
 export default rootReducer;

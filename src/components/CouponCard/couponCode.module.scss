@@ -1,0 +1,32 @@
+@import "stylesheets/variables.scss";
+@import "stylesheets/responsive.scss";
+
+.cardContainer {
+  width: 200px;
+  height: fit-content;
+  min-height: 100px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: $container-box-shadow;
+}
+
+.cardContentStyle {
+  margin: 0px 10px;
+  padding: 5px;
+}
+
+.cardNameStyle {
+  text-align: center;
+  font-weight: 600;
+  margin: 10px;
+  font-size: $normal-font;
+  color: $black;
+  @media #{$tablet_device} {
+    font-size: $normal-font-table;
+  }
+  @media #{$mobile_device} {
+    font-size: $normal-font-mobile;
+  }
+}

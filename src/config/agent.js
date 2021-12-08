@@ -127,10 +127,35 @@ const Testimonial = {
   },
 };
 
+const Coupon = {
+  getAll: async () => {
+    try {
+      return await requests.get("coupon/");
+    } catch (error) {
+      throw error;
+    }
+  },
+  add: async (payload) => {
+    try {
+      return await requests.post("coupon/add", payload);
+    } catch (error) {
+      throw error;
+    }
+  },
+  delete: async (id) => {
+    try {
+      return await requests.delete(`coupon/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  },
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   Auth,
   URL,
   Testimonial,
   User,
+  Coupon,
 };

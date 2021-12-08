@@ -39,6 +39,13 @@ const AdminDashboard = ({ userPayload }) => {
           Items
         </Button>
         <Button
+          onClick={() => history.push("/admin-coupon")}
+          variant="primary"
+          className={styles.buttonStyle}
+        >
+          Coupon Code
+        </Button>
+        <Button
           onClick={() => {}}
           variant="primary"
           className={styles.buttonStyle}
