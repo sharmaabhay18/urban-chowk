@@ -137,6 +137,54 @@ const Testimonial = {
   },
 };
 
+const Items = {
+  getAll: async () => {
+    try {
+      return await requests.get("items/");
+    } catch (error) {
+      throw error;
+    }
+  },
+  add: async (payload) => {
+    try {
+      return await requests.post("items/add", payload);
+    } catch (error) {
+      throw error;
+    }
+  },
+  delete: async (id) => {
+    try {
+      return await requests.delete(`items/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  },
+}
+
+const Category = {
+  getAll: async () => {
+    try {
+      return await requests.get("category/");
+    } catch (error) {
+      throw error;
+    }
+  },
+  add: async (payload) => {
+    try {
+      return await requests.post("category/add", payload);
+    } catch (error) {
+      throw error;
+    }
+  },
+  delete: async (id) => {
+    try {
+      return await requests.delete(`category/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  },
+}
+
 const Coupon = {
   getAll: async () => {
     try {
@@ -168,4 +216,6 @@ export default {
   Testimonial,
   User,
   Coupon,
+  Items,
+  Category
 };
