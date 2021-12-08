@@ -23,7 +23,7 @@ const authToken = localStorage.getItem(config.AUTH_TOKEN);
 axios.defaults.headers.common["Authorization"] = `Bearer ${authToken}`;
 
 const requests = {
-  get: (url, tokenForAPI) => {
+  get: async (url, tokenForAPI) => {
     return axios
       .get(URL.API_ROOT + url, tokenForAPI)
       .then((res) => {
@@ -34,7 +34,7 @@ const requests = {
       });
   },
 
-  post: (url, body, tokenForAPI) => {
+  post: async (url, body, tokenForAPI) => {
     return axios
       .post(URL.API_ROOT + url, body, tokenForAPI)
       .then((res) => {
@@ -44,7 +44,7 @@ const requests = {
         throw e.response;
       });
   },
-  put: (url, body, tokenForAPI) => {
+  put: async (url, body, tokenForAPI) => {
     return axios
       .put(URL.API_ROOT + url, body, tokenForAPI)
       .then((res) => {
@@ -55,7 +55,7 @@ const requests = {
       });
   },
 
-  patch: (url, body, tokenForAPI) => {
+  patch: async (url, body, tokenForAPI) => {
     return axios
       .patch(URL.API_ROOT + url, body, tokenForAPI)
       .then((res) => {
@@ -66,7 +66,7 @@ const requests = {
       });
   },
 
-  delete: (url) => {
+  delete: async (url) => {
     return axios
       .delete(URL.API_ROOT + url)
       .then((res) => {
