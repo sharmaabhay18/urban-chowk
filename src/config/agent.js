@@ -44,6 +44,16 @@ const requests = {
         throw e.response;
       });
   },
+  put: (url, body, tokenForAPI) => {
+    return axios
+      .put(URL.API_ROOT + url, body, tokenForAPI)
+      .then((res) => {
+        return res;
+      })
+      .catch((e) => {
+        throw e.response;
+      });
+  },
 
   patch: (url, body, tokenForAPI) => {
     return axios
