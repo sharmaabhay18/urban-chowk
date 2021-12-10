@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
 
 import "react-toastify/dist/ReactToastify.css";
 
+import { getAllItemAction, spinnerAction } from "redux/actions";
+
 import Spinner from "components/Spinner";
 
-import Home from "pages/Home";
+import Home from "pages/home";
 import SignUp from "pages/signUp";
 import Login from "pages/login";
+import ProductList from "pages/productList";
+import ProductOverview from "pages/productOverview";
 import ForgetPassword from "pages/forgetPassword";
 import AdminDashboard from "pages/adminDashboard";
 import AdminTestimonial from "pages/adminTestimonial";
@@ -17,6 +21,7 @@ import AddTestimonial from "pages/addTestimonial";
 import Profile from "pages/account/profile";
 import AdminCoupon from "pages/adminCoupon";
 import AddCoupon from "pages/addCoupon";
+
 import Header from "components/Header";
 import Footer from "components/Footer";
 import Error from "components/Error";
@@ -24,6 +29,11 @@ import Error from "components/Error";
 import styles from "./app.module.scss";
 
 function App(props) {
+  useEffect(() => {
+    props.spinnerAction(true);
+    props.getAllItemAction(() => props.spinnerAction(false));
+  }, []);
+
   const renderSpinner = () => {
     const { spinnerState } = props;
 
@@ -42,6 +52,8 @@ function App(props) {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/category/:type" component={ProductList} />
+          <Route exact path="/product/:id" component={ProductOverview} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
@@ -65,10 +77,19 @@ function App(props) {
     </React.Fragment>
   );
 }
-const mapStateToProps = ({ spinnerReducer }) => {
+const mapDispatchToProps = {
+  getAllItemAction,
+  spinnerAction,
+};
+
+const mapStateToProps = ({
+  spinnerReducer,
+  allItemsReducer: allItemsState,
+}) => {
   return {
     spinnerState: spinnerReducer.spinnerState,
+    itemData: allItemsState.allItemData,
   };
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

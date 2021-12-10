@@ -73,13 +73,16 @@
   padding-top: 20px;
   font-weight: 700;
   color: $medium-grey;
+  margin-top: -100px;
   @media #{$tablet_device} {
     font-size: 14px;
     font-weight: 600;
     line-height: 16px;
     padding-top: 0px;
+    margin-top: 0px;
   }
   @media #{$mobile_device} {
+    margin-top: 0px;
     font-size: 14px;
     font-weight: 600;
     line-height: 18px;

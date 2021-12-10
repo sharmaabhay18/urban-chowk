@@ -22,7 +22,7 @@ export default class ItemDetail extends Component {
 
     return (
       <div className={styles.itemDetailFooter}>
-        <h4 className={styles.itemDetailCostStyle}>₹{cost}</h4>
+        <h4 className={styles.itemDetailCostStyle}>$ {cost}</h4>
         <div className={styles.itemDetailPurchaseContainer}>
           <QuantityCounter
             quantity={quantity}

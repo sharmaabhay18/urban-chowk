@@ -34,7 +34,7 @@ class ItemCard extends Component {
           <h5 className={styles.itemCardTitleStyle}>{title}</h5>
           <h5 className={styles.itemCardSubTitleStyle}>{subTitle}</h5>
           <div className={styles.itemCardFooterStyle}>
-            <h5 className={styles.itemCardPriceStyle}>₹ {price}</h5>
+            <h5 className={styles.itemCardPriceStyle}>$ {price}</h5>
             <Button
               onClick={(event) => {
                 event.stopPropagation();

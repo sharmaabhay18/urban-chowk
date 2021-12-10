@@ -45,17 +45,17 @@
 }
 
 .itemCardSubTitleStyle {
-  font-weight: 700;
+  font-weight: 500;
   color: $medium-grey;
   margin: -2px 5px;
   font-size: 14px;
   @media #{$tablet_device} {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
   }
   @media #{$mobile_device} {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 500;
   }
 }
 
@@ -64,7 +64,7 @@
   justify-content: space-between;
   align-items: flex-start;
   padding-right: 8px;
-  margin: 12px 0px;
+  margin: 20px 0px;
 }
 
 .itemCardPriceStyle {

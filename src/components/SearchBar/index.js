@@ -9,11 +9,7 @@ import styles from "./searchBar.module.scss";
 
 class SearchBar extends Component {
   render() {
-    const searchPayload = [
-      { value: "Fish", label: "Fish" },
-      { value: "Chicken", label: "Chicken" },
-      { value: "Meat", label: "Meat" },
-    ];
+    const { payload, itemData, history } = this.props;
 
     const ValueContainer = ({ children, ...props }) => {
       return (
@@ -35,10 +31,18 @@ class SearchBar extends Component {
     return (
       <Select
         value=""
-        onChange={() => {}}
+        onChange={(searchItem) => {
+          const selectedProduct = itemData.filter(
+            (product) => product._id === searchItem.value
+          );
+
+          history.replace(searchItem.route, {
+            selectedProduct: selectedProduct[0],
+          });
+        }}
         isSearchable
         placeholder="Search Item..."
-        options={searchPayload}
+        options={payload}
         styles={selectStyles}
         components={{ ValueContainer }}
       />

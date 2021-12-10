@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { GiHamburgerMenu, GiShoppingCart } from "react-icons/gi";
 import { TiLocation } from "react-icons/ti";
@@ -65,7 +66,21 @@ class Header extends Component {
     );
   };
 
-  renderSearchBar = () => <SearchBar />;
+  renderSearchBar = () => {
+    const { itemData } = this.props;
+
+    const payload =
+      itemData &&
+      itemData.map((i) => {
+        return {
+          value: i._id,
+          label: i.name,
+          route: `/product/${i._id}`,
+        };
+      });
+
+    return <SearchBar payload={payload} itemData={itemData} />;
+  };
 
   renderCartValue = () => {
     const { checkoutList } = this.props;
@@ -221,4 +236,10 @@ class Header extends Component {
   }
 }
 
-export default withRouter(Header);
+const mapStateToProps = ({ allItemsReducer: allItemsState }) => {
+  return {
+    itemData: allItemsState.allItemData,
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(Header));

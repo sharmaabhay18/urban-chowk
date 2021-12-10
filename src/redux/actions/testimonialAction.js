@@ -2,7 +2,7 @@ import Types from "utils/types";
 import agent from "config/agent";
 import { notifySuccessToast } from "utils/helperFunction";
 
-const getTestimonialAction = () => async (dispatch) => {
+const getTestimonialAction = (handleSpinner) => async (dispatch) => {
   dispatch({
     type: Types.TESTIMONIAL.GET_TESTIMONIAL_ACTION_LOADING,
     payload: null,
@@ -14,11 +14,13 @@ const getTestimonialAction = () => async (dispatch) => {
       type: Types.TESTIMONIAL.GET_TESTIMONIAL_ACTION_SUCCESS,
       payload: data?.data?.result?.data,
     });
+    handleSpinner(false);
   } catch (error) {
     dispatch({
       type: Types.TESTIMONIAL.GET_TESTIMONIAL_ACTION_FAILURE,
       payload: null,
     });
+    handleSpinner(false);
   }
 };
 

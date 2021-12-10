@@ -138,28 +138,35 @@ const Testimonial = {
 };
 
 const Items = {
-  getAll: async () => {
+  getAllItems: async () => {
     try {
-      return await requests.get("items/");
+      return await requests.get(`item/`);
+    } catch (error) {
+      throw error;
+    }
+  },
+  getAll: async (id) => {
+    try {
+      return await requests.get(`item/${id}`);
     } catch (error) {
       throw error;
     }
   },
   add: async (payload) => {
     try {
-      return await requests.post("items/add", payload);
+      return await requests.post("item/add", payload);
     } catch (error) {
       throw error;
     }
   },
   delete: async (id) => {
     try {
-      return await requests.delete(`items/${id}`);
+      return await requests.delete(`item/${id}`);
     } catch (error) {
       throw error;
     }
   },
-}
+};
 
 const Category = {
   getAll: async () => {
@@ -183,7 +190,7 @@ const Category = {
       throw error;
     }
   },
-}
+};
 
 const Coupon = {
   getAll: async () => {
@@ -217,5 +224,5 @@ export default {
   User,
   Coupon,
   Items,
-  Category
+  Category,
 };

@@ -6,6 +6,9 @@ import testimonialReducer from "redux/reducers/testimonialReducer";
 import spinnerReducer from "redux/reducers/spinnerReducer";
 import userReducer from "redux/reducers/userReducer";
 import couponReducer from "redux/reducers/couponReducer";
+import categoryReducer from "redux/reducers/categoryReducer";
+import itemsReducer from "redux/reducers/itemsReducer";
+import allItemsReducer from "redux/reducers/allItemsReducer";
 
 const rootReducer = combineReducers({
   signupReducer,
@@ -15,6 +18,9 @@ const rootReducer = combineReducers({
   spinnerReducer,
   userReducer,
   couponReducer,
+  categoryReducer,
+  itemsReducer,
+  allItemsReducer,
 });
 
 export default rootReducer;
