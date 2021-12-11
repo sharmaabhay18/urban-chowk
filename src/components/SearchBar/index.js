@@ -5,11 +5,14 @@ import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 
+import { getItemAction, spinnerAction } from "redux/actions";
+
 import styles from "./searchBar.module.scss";
 
 class SearchBar extends Component {
   render() {
-    const { payload, itemData, history } = this.props;
+    const { payload, itemData, history, spinnerAction, getItemAction } =
+      this.props;
 
     const ValueContainer = ({ children, ...props }) => {
       return (
@@ -32,12 +35,16 @@ class SearchBar extends Component {
       <Select
         value=""
         onChange={(searchItem) => {
-          const selectedProduct = itemData.filter(
+          const [selectedProduct] = itemData.filter(
             (product) => product._id === searchItem.value
           );
 
+          spinnerAction(true);
+          getItemAction(selectedProduct && selectedProduct.categoryId, () =>
+            spinnerAction(false)
+          );
           history.replace(searchItem.route, {
-            selectedProduct: selectedProduct[0],
+            selectedProduct: selectedProduct,
           });
         }}
         isSearchable
@@ -72,7 +79,14 @@ const mapStateToProps = ({ itemReducer }) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(SearchBar));
+const mapDispatchToProps = {
+  getItemAction,
+  spinnerAction,
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+);
 
 const selectStyles = {
   container: (base) => ({

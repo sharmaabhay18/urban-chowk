@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import {
-  // updateCheckoutListAction,
+  updateCheckoutListAction,
   getItemAction,
   spinnerAction,
 } from "redux/actions";
@@ -14,10 +14,7 @@ import {
 import Spinner from "components/Spinner";
 import ItemCard from "components/ItemCard";
 
-// import {
-//   notifySuccessToast,
-//   getProductBasedOnCategoryName,
-// } from "utils/helperFucntion";
+import { notifySuccessToast } from "utils/helperFunction";
 
 import styles from "./productList.module.scss";
 
@@ -28,15 +25,15 @@ class ProductList extends Component {
       height: 0,
     };
   }
-  // onClickSuccess = (productPayload) => {
-  //   const { updateCheckoutListAction } = this.props;
+  onClickSuccess = (productPayload) => {
+    const { updateCheckoutListAction } = this.props;
 
-  //   updateCheckoutListAction({
-  //     ...productPayload,
-  //     quantity: 1,
-  //   });
-  //   notifySuccessToast("Item added successfully to cart!", 500);
-  // };
+    updateCheckoutListAction({
+      ...productPayload,
+      quantity: 1,
+    });
+    notifySuccessToast("Item added successfully to cart!", 500);
+  };
 
   async componentDidMount() {
     const {
@@ -111,7 +108,7 @@ class ProductList extends Component {
                       price={item.price}
                       subTitle={item.description}
                       counterId={item._id}
-                      handleOnButtonClick={() => {}}
+                      handleOnButtonClick={this.onClickSuccess}
                       handleOnCardClick={() => {
                         const [selectedProduct] = itemData.filter(
                           (product) => product._id === item._id
@@ -158,6 +155,7 @@ const mapStateToProps = (
 const mapDispatchToProps = {
   getItemAction,
   spinnerAction,
+  updateCheckoutListAction,
 };
 
 export default withRouter(

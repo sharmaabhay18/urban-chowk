@@ -21,6 +21,7 @@ import AddTestimonial from "pages/addTestimonial";
 import Profile from "pages/account/profile";
 import AdminCoupon from "pages/adminCoupon";
 import AddCoupon from "pages/addCoupon";
+import Checkout from "pages/checkout";
 
 import Header from "components/Header";
 import Footer from "components/Footer";
@@ -57,6 +58,7 @@ function App(props) {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/admin-dashboard" component={AdminDashboard} />
           <Route exact path="/admin-testimonial" component={AdminTestimonial} />
           <Route exact path="/add-testimonial" component={AddTestimonial} />

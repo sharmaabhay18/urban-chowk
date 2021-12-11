@@ -1,10 +1,28 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import { updateCheckoutListAction } from "redux/actions";
+import QuantityCounter from "components/QuantityCounter";
 
 import Button from "components/Button";
 import styles from "./itemCard.module.scss";
 
 class ItemCard extends Component {
+  getData = (val, productPayload) => {
+    const { updateCheckoutListAction } = this.props;
+    updateCheckoutListAction(
+      {
+        ...productPayload,
+        quantity: val.quantity,
+      },
+      false,
+      true
+    );
+
+    return val;
+  };
+
   render() {
     const {
       title,
@@ -14,14 +32,22 @@ class ItemCard extends Component {
       handleOnCardClick,
       handleOnButtonClick,
       itemKey,
+      counterId,
+      checkoutList,
     } = this.props;
 
     const itemDetail = {
-      cost: price,
+      cost: Number(price),
       name: title,
       type: subTitle,
       imgSrc,
+      counterId,
     };
+
+    const getItem =
+      checkoutList !== undefined
+        ? checkoutList.filter((item) => item.counterId === counterId)
+        : [];
 
     return (
       <div
@@ -35,14 +61,25 @@ class ItemCard extends Component {
           <h5 className={styles.itemCardSubTitleStyle}>{subTitle}</h5>
           <div className={styles.itemCardFooterStyle}>
             <h5 className={styles.itemCardPriceStyle}>$ {price}</h5>
-            <Button
-              onClick={(event) => {
-                event.stopPropagation();
-                handleOnButtonClick(itemDetail);
-              }}
-            >
-              ADD TO CART
-            </Button>
+            {getItem.length !== 0 && getItem.quantity !== 1 ? (
+              <QuantityCounter
+                quantity={getItem[0].quantity}
+                sendQuantityData={(val) => this.getData(val, itemDetail)}
+                counterId={counterId}
+                quantityHeaderStyle={styles.itemDetailQuantityStyle}
+                quantityBoxStyle={styles.itemDetailQuantityBoxStyle}
+                quantityContainer={styles.itemDetailQuantityContainer}
+              />
+            ) : (
+              <Button
+                onClick={(event) => {
+                  event.stopPropagation();
+                  handleOnButtonClick(itemDetail);
+                }}
+              >
+                ADD TO CART
+              </Button>
+            )}
           </div>
         </div>
       </div>
@@ -50,7 +87,15 @@ class ItemCard extends Component {
   }
 }
 
-export default ItemCard;
+const mapDispatchToProps = {
+  updateCheckoutListAction,
+};
+
+const mapStateToProps = ({ checkoutListReducer: checkoutListState }) => {
+  return { checkoutList: checkoutListState.checkoutItems };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemCard);
 
 ItemCard.protoTypes = {
   title: PropTypes.string.isRequired,

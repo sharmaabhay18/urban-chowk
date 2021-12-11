@@ -236,9 +236,13 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = ({ allItemsReducer: allItemsState }) => {
+const mapStateToProps = ({
+  allItemsReducer: allItemsState,
+  checkoutListReducer,
+}) => {
   return {
     itemData: allItemsState.allItemData,
+    checkoutList: checkoutListReducer.checkoutItems,
   };
 };
 

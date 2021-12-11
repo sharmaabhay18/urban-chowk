@@ -8,3 +8,4 @@ export * from "redux/actions/couponActions";
 export * from "redux/actions/categoryActions";
 export * from "redux/actions/itemActions";
 export * from "redux/actions/allItemsActions";
+export * from "redux/actions/checkoutListAction";

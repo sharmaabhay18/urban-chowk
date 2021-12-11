@@ -9,6 +9,7 @@ import couponReducer from "redux/reducers/couponReducer";
 import categoryReducer from "redux/reducers/categoryReducer";
 import itemsReducer from "redux/reducers/itemsReducer";
 import allItemsReducer from "redux/reducers/allItemsReducer";
+import checkoutListReducer from "redux/reducers/checkoutListReducer";
 
 const rootReducer = combineReducers({
   signupReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   categoryReducer,
   itemsReducer,
   allItemsReducer,
+  checkoutListReducer,
 });
 
 export default rootReducer;

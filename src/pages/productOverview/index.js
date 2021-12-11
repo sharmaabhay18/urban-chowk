@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-// import { updateCheckoutListAction } from "actions";
+import {
+  updateCheckoutListAction,
+  getItemAction,
+  spinnerAction,
+} from "redux/actions";
 import ItemDetail from "components/ItemDetail";
 import ProductList from "pages/productList";
 
-// import { notifySuccessToast, notifyErrorToast } from "utils/helperFucntion";
+import { notifySuccessToast, notifyErrorToast } from "utils/helperFunction";
 
 import styles from "./productOverview.module.scss";
 
@@ -15,38 +19,36 @@ class ProductOverview extends Component {
     this.state = { quantity: 1 };
   }
 
-  // async componentDidMount() {
-  //   const {
-  //     location: { state },
-  //     match: {
-  //       params: { type },
-  //     },
-  //     getItemAction,
-  //     spinnerAction,
-  //   } = this.props;
+  componentDidMount() {
+    const {
+      getItemAction,
+      spinnerAction,
+      location: { state },
+    } = this.props;
 
-  //   if (type !== undefined) {
-  //     spinnerAction(true);
-  //     getItemAction(state && state.id, () => spinnerAction(false));
-  //   }
-  // }
+    spinnerAction(true);
+    getItemAction(
+      state && state.selectedProduct && state.selectedProduct.categoryId,
+      () => spinnerAction(false)
+    );
+  }
 
   getData = (val) => {
     this.setState({ quantity: val.quantity });
     return val;
   };
 
-  // onClickSuccess = (productPayload, quantity) => {
-  //   const { updateCheckoutListAction } = this.props;
-  //   updateCheckoutListAction(
-  //     {
-  //       ...productPayload,
-  //       quantity: quantity,
-  //     },
-  //     true
-  //   );
-  //   notifySuccessToast("Item added successfully to cart!", 500);
-  // };
+  onClickSuccess = (productPayload, quantity) => {
+    const { updateCheckoutListAction } = this.props;
+    updateCheckoutListAction(
+      {
+        ...productPayload,
+        quantity: quantity,
+      },
+      true
+    );
+    notifySuccessToast("Item added successfully to cart!", 500);
+  };
 
   render() {
     const {
@@ -57,7 +59,7 @@ class ProductOverview extends Component {
       productPayload,
     } = this.props;
 
-    // const { quantity } = this.state;
+    const { quantity } = this.state;
     return (
       <React.Fragment>
         {state && state.selectedProduct ? (
@@ -67,11 +69,10 @@ class ProductOverview extends Component {
               description={state.selectedProduct.description}
               cost={state.selectedProduct.price}
               imgSrc={state.selectedProduct.icon}
-              handleOnClick={
-                (productPayload) => {}
-                // quantity === 0
-                //   ? notifyErrorToast("Please add at least one quantity!")
-                //   : this.onClickSuccess(productPayload, quantity)
+              handleOnClick={(productPayload) =>
+                quantity === 0
+                  ? notifyErrorToast("Please add at least one quantity!")
+                  : this.onClickSuccess(productPayload, quantity)
               }
               sendQuantityData={this.getData}
               counterId={id}
@@ -92,9 +93,11 @@ class ProductOverview extends Component {
 }
 
 const mapStateToProps = ({ itemsReducer }, { location: { state } }) => {
-  const getProductList = itemsReducer?.itemData.filter((item) => {
-    return item._id !== state?.selectedProduct._id;
-  });
+  const getProductList =
+    itemsReducer?.itemData &&
+    itemsReducer?.itemData.filter((item) => {
+      return item._id !== state?.selectedProduct._id;
+    });
 
   return {
     productPayload: getProductList,
@@ -102,7 +105,9 @@ const mapStateToProps = ({ itemsReducer }, { location: { state } }) => {
 };
 
 const mapDispatchToProps = {
-  // updateCheckoutListAction,
+  updateCheckoutListAction,
+  getItemAction,
+  spinnerAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductOverview);

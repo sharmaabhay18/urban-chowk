@@ -17,8 +17,22 @@ export default class ItemDetail extends Component {
   };
 
   renderItemDetailFooter = () => {
-    const { handleOnClick, cost, counterId, sendQuantityData, quantity } =
-      this.props;
+    const {
+      handleOnClick,
+      cost,
+      name,
+      imgSrc,
+      counterId,
+      sendQuantityData,
+      quantity,
+    } = this.props;
+
+    const itemDetail = {
+      cost,
+      name,
+      imgSrc,
+      counterId,
+    };
 
     return (
       <div className={styles.itemDetailFooter}>
@@ -32,7 +46,7 @@ export default class ItemDetail extends Component {
             quantityBoxStyle={styles.itemDetailQuantityBoxStyle}
             quantityContainer={styles.itemDetailQuantityContainer}
           />
-          <Button onClick={() => handleOnClick()} variant="secondary">
+          <Button onClick={() => handleOnClick(itemDetail)} variant="secondary">
             Add To Cart{" "}
           </Button>
         </div>

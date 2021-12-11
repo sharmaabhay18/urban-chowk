@@ -1,20 +1,28 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+
+import throttle from "lodash/throttle";
+
+import { loadState, saveState } from "utils/localStorage";
 
 import rootReducer from "./rootReducer";
 
-const persistConfig = {
-  key: "root",
-  storage,
-  whitelist: ["itemsReducer"],
-};
+const persistedState = loadState();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = createStore(
+  rootReducer,
+  persistedState,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
-// eslint-disable-next-line import/no-anonymous-default-export
+store.subscribe(
+  throttle(() => {
+    saveState({
+      checkoutListReducer: store.getState().checkoutListReducer,
+      // itemsReducer: store.getState().itemsReducer,
+    });
+  }, 1000)
+);
 
-let store = createStore(persistedReducer, applyMiddleware(thunk));
-let persistor = persistStore(store);
-export { store, persistor };
+export { store };
