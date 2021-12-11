@@ -9,3 +9,6 @@ export * from "redux/actions/categoryActions";
 export * from "redux/actions/itemActions";
 export * from "redux/actions/allItemsActions";
 export * from "redux/actions/checkoutListAction";
+export * from "redux/actions/localOrderAction";
+export * from "redux/actions/addressActions";
+export * from "redux/actions/orderAction"

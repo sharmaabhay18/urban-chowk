@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { getCouponAction, deleteCouponAction } from "redux/actions";
+import { getCouponAction, spinnerAction, deleteCouponAction } from "redux/actions";
 
 import { isAdminLoggedIn } from "utils/helperFunction";
 import Button from "components/Button";
@@ -16,13 +16,15 @@ const AdminCoupon = ({
   getCouponAction,
   fetching,
   deleteCouponAction,
+  spinnerAction
 }) => {
   const history = useHistory();
 
   useEffect(() => {
     isAdminLoggedIn(history);
-    getCouponAction();
-  }, [getCouponAction, history]);
+    spinnerAction(true);
+    getCouponAction((v) => spinnerAction(v));
+  }, [getCouponAction, history, spinnerAction]);
 
   const renderData = () => {
     return (
@@ -81,6 +83,7 @@ const AdminCoupon = ({
 const mapDispatchToProps = {
   getCouponAction,
   deleteCouponAction,
+  spinnerAction
 };
 
 const mapStateToProps = ({ couponReducer: couponState }) => {

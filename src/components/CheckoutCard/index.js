@@ -90,7 +90,7 @@ export default class CheckoutCard extends Component {
 CheckoutCard.propTypes = {
   imgSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   quantity: PropTypes.number,
   cost: PropTypes.number.isRequired,
   sendQuantityData: PropTypes.func,

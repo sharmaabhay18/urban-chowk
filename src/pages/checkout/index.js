@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 
+import config from "utils/configConstant";
 import CheckoutCard from "components/CheckoutCard";
 import Button from "components/Button";
 
@@ -9,12 +10,15 @@ import {
   getCheckoutListAction,
   removeCheckoutListAction,
   updateCounterCheckoutAction,
+  updateOrderListAction,
 } from "redux/actions";
-
+import { notifyErrorToast } from "utils/helperFunction";
 import styles from "./checkout.module.scss";
 
 class Checkout extends Component {
   componentDidMount() {
+    const data = localStorage.getItem(config.AUTH_TOKEN);
+    if (!data) return this.props.history.push("/");
     this.props.getCheckoutListAction();
   }
 
@@ -23,9 +27,29 @@ class Checkout extends Component {
   };
 
   handleProceedButton = () => {
-    const { history } = this.props;
+    const { history, checkoutList, updateOrderListAction } = this.props;
 
-    history.push("/payment ");
+    if (checkoutList !== undefined) {
+      const itemPayload = checkoutList.map((item) =>
+        Object.assign(
+          {},
+          {
+            itemName: item.name,
+            itemId: item.counterId,
+            quantity: item.quantity,
+          }
+        )
+      );
+      const totalCost = checkoutList
+        .map((item) => item.cost)
+        .reduce((sum, current) => sum + current, 0);
+
+      updateOrderListAction({ itemPayload: [...itemPayload], totalCost });
+
+      history.push("/address");
+    } else {
+      notifyErrorToast("Checkout cart cannot be empty!");
+    }
   };
 
   render() {
@@ -71,6 +95,7 @@ const mapDispatchToProps = {
   getCheckoutListAction,
   removeCheckoutListAction,
   updateCounterCheckoutAction,
+  updateOrderListAction,
 };
 
 const mapStateToProps = ({ checkoutListReducer: checkoutListState }) => {

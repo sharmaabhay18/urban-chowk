@@ -42,10 +42,9 @@ const updateCounterCheckoutAction = (selectedItem) => async (dispatch) => {
 const updateCheckoutListAction =
   (checkoutItem, shouldAddQuantity, fromItemCard) => async (dispatch) => {
     const payload = loadState();
-
     if (
       payload === undefined ||
-      Object.keys(payload.checkoutListReducer?.checkoutItems).length === 0
+      Object.keys(payload.checkoutListReducer).length === 0
     ) {
       const newItemToAdd = Object.assign({}, checkoutItem, {
         baseCost: checkoutItem.cost,

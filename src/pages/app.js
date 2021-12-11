@@ -14,14 +14,17 @@ import SignUp from "pages/signUp";
 import Login from "pages/login";
 import ProductList from "pages/productList";
 import ProductOverview from "pages/productOverview";
+import Payment from "pages/payment";
 import ForgetPassword from "pages/forgetPassword";
 import AdminDashboard from "pages/adminDashboard";
 import AdminTestimonial from "pages/adminTestimonial";
 import AddTestimonial from "pages/addTestimonial";
 import Profile from "pages/account/profile";
+import Order from "pages/account/orders";
 import AdminCoupon from "pages/adminCoupon";
 import AddCoupon from "pages/addCoupon";
 import Checkout from "pages/checkout";
+import Address from "pages/address";
 
 import Header from "components/Header";
 import Footer from "components/Footer";
@@ -58,12 +61,15 @@ function App(props) {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/order-details" component={Order} />
           <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/payment" component={Payment} />
           <Route exact path="/admin-dashboard" component={AdminDashboard} />
           <Route exact path="/admin-testimonial" component={AdminTestimonial} />
           <Route exact path="/add-testimonial" component={AddTestimonial} />
           <Route exact path="/add-coupon" component={AddCoupon} />
           <Route exact path="/admin-coupon" component={AdminCoupon} />
+          <Route exact path="/address" component={Address} />
           <Route
             exact
             path="/admin-singup"

@@ -93,3 +93,14 @@ export const AddCouponScehma = Yup.object().shape({
     .min(1, "Discount is too short!")
     .required("Discount is required"),
 });
+
+export const AddressSchema = Yup.object().shape({
+  address: Yup.string()
+    .min(2, "Address is too short!")
+    .max(250, "Address is too long!")
+    .required("Address is required"),
+  state: Yup.string().required("State is required"),
+  city: Yup.string().required("City is required"),
+  pincode: Yup.string().required("Pin Code is required"),
+  landmark: Yup.string(),
+});

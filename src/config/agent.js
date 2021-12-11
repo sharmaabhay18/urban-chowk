@@ -168,6 +168,30 @@ const Items = {
   },
 };
 
+const Order = {
+  getAllOrder: async () => {
+    try {
+      return await requests.get(`order/all`);
+    } catch (error) {
+      throw error;
+    }
+  },
+  getAll: async () => {
+    try {
+      return await requests.get(`order`);
+    } catch (error) {
+      throw error;
+    }
+  },
+  add: async (payload) => {
+    try {
+      return await requests.post("order/add", payload);
+    } catch (error) {
+      throw error;
+    }
+  },
+};
+
 const Category = {
   getAll: async () => {
     try {
@@ -216,6 +240,30 @@ const Coupon = {
   },
 };
 
+const Address = {
+  getAll: async () => {
+    try {
+      return await requests.get("customerAddress/");
+    } catch (error) {
+      throw error;
+    }
+  },
+  add: async (payload) => {
+    try {
+      return await requests.post("customerAddress/add", payload);
+    } catch (error) {
+      throw error;
+    }
+  },
+  delete: async (id) => {
+    try {
+      return await requests.delete(`customerAddress/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  },
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   Auth,
@@ -225,4 +273,6 @@ export default {
   Coupon,
   Items,
   Category,
+  Address,
+  Order
 };

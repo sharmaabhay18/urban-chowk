@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { getTestimonialAction, deleteTestimonialAction } from "redux/actions";
+import { spinnerAction, getTestimonialAction, deleteTestimonialAction } from "redux/actions";
 
 import { isAdminLoggedIn } from "utils/helperFunction";
 import Button from "components/Button";
@@ -16,13 +16,15 @@ const AdminTestimonial = ({
   getTestimonialAction,
   fetching,
   deleteTestimonialAction,
+  spinnerAction
 }) => {
   const history = useHistory();
 
   useEffect(() => {
     isAdminLoggedIn(history);
-    getTestimonialAction();
-  }, [getTestimonialAction, history]);
+    spinnerAction(true);
+    getTestimonialAction((val) => spinnerAction(val));
+  }, [getTestimonialAction, history, spinnerAction]);
 
   const renderData = () => {
     return (
@@ -82,6 +84,7 @@ const AdminTestimonial = ({
 const mapDispatchToProps = {
   getTestimonialAction,
   deleteTestimonialAction,
+  spinnerAction
 };
 
 const mapStateToProps = ({ testimonialReducer: testimonialState }) => {

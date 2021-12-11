@@ -35,7 +35,7 @@ export default class OrderCard extends Component {
           {_renderItemList(items)}
         </div>
         <div className={styles.orderCardPaymentContainerStyle}>
-          <h4>INR {price}</h4>
+          <h4>$ {price}</h4>
           <h4 className={styles.orderCardPaymentStyle}>
             Payment: {paymentType}{" "}
           </h4>

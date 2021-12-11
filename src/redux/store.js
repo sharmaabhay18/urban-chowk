@@ -20,7 +20,7 @@ store.subscribe(
   throttle(() => {
     saveState({
       checkoutListReducer: store.getState().checkoutListReducer,
-      // itemsReducer: store.getState().itemsReducer,
+      localOrderReducer: store.getState().localOrderReducer,
     });
   }, 1000)
 );

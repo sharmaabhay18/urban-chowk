@@ -26,7 +26,6 @@ class AccountNavBar extends Component {
       saveState(persistedCheckoutItems);
       logoutAction();
       delete axios.defaults.headers.common["Authorization"];
-
       return history.replace("/");
     });
   };
@@ -58,7 +57,7 @@ class AccountNavBar extends Component {
               : styles.linkStyle
           }
           variant="secondary"
-          onClick={() => history.push("/order")}
+          onClick={() => history.push("/order-details")}
         >
           Orders
         </Button>

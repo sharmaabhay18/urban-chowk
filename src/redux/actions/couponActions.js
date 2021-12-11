@@ -2,7 +2,7 @@ import Types from "utils/types";
 import agent from "config/agent";
 import { notifySuccessToast } from "utils/helperFunction";
 
-const getCouponAction = () => async (dispatch) => {
+const getCouponAction = (spinnerAction) => async (dispatch) => {
   dispatch({
     type: Types.COUPON.GET_COUPON_ACTION_LOADING,
     payload: null,
@@ -14,11 +14,13 @@ const getCouponAction = () => async (dispatch) => {
       type: Types.COUPON.GET_COUPON_ACTION_SUCCESS,
       payload: data?.data?.result?.data,
     });
+    spinnerAction(false);
   } catch (error) {
     dispatch({
       type: Types.COUPON.GET_COUPON_ACTION_FAILURE,
       payload: null,
     });
+    spinnerAction(false);
   }
 };
 
