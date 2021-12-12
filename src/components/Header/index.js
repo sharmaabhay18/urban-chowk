@@ -6,6 +6,11 @@ import { TiLocation } from "react-icons/ti";
 import { MdAccountCircle, MdOutlineDashboardCustomize } from "react-icons/md";
 import { FaUserAlt, FaHome } from "react-icons/fa";
 
+import {
+  getAllItemAction,
+  spinnerAction
+} from "redux/actions"
+
 import Link from "components/Link";
 import SearchBar from "components/SearchBar";
 import Button from "components/Button";
@@ -28,6 +33,9 @@ class Header extends Component {
   }
 
   componentDidMount() {
+    const { spinnerAction, getAllItemAction } = this.props;
+    spinnerAction(true);
+    getAllItemAction(() => spinnerAction(false));
     document.addEventListener("mousedown", this.handleClickOutside);
   }
 
@@ -133,7 +141,7 @@ class Header extends Component {
             <MdOutlineDashboardCustomize className={styles.headerIconStyle} color="white" />
             <Link className={styles.navTextStyle} to="/admin-dashboard">
               Admin Dashboard
-        </Link>
+            </Link>
           </div>
         </div>
       )
@@ -250,7 +258,6 @@ class Header extends Component {
   };
 
   render() {
-
     return (
       <React.Fragment>
         <div className={styles.headerContainer}>
@@ -264,6 +271,14 @@ class Header extends Component {
   }
 }
 
+
+
+const mapDispatchToProps = {
+  getAllItemAction,
+  spinnerAction
+};
+
+
 const mapStateToProps = ({
   allItemsReducer: allItemsState,
   checkoutListReducer,
@@ -274,4 +289,4 @@ const mapStateToProps = ({
   };
 };
 
-export default withRouter(connect(mapStateToProps)(Header));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
