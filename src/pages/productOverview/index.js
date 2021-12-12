@@ -5,11 +5,13 @@ import {
   updateCheckoutListAction,
   getItemAction,
   spinnerAction,
+  getItemByIdAction
 } from "redux/actions";
 import ItemDetail from "components/ItemDetail";
 import ProductList from "pages/productList";
 
 import { notifySuccessToast, notifyErrorToast } from "utils/helperFunction";
+import { checkAdmin } from "utils/helperFunction";
 
 import styles from "./productOverview.module.scss";
 
@@ -24,13 +26,27 @@ class ProductOverview extends Component {
       getItemAction,
       spinnerAction,
       location: { state },
+      history,
+      match: { params },
+      getItemByIdAction
     } = this.props;
 
+    if (checkAdmin()) {
+      notifyErrorToast("Please login as cutomer")
+      return history.push("/")
+    };
+
     spinnerAction(true);
-    getItemAction(
-      state && state.selectedProduct && state.selectedProduct.categoryId,
-      () => spinnerAction(false)
-    );
+    if (state === undefined) {
+      params && params.id && getItemByIdAction(params?.id, () => spinnerAction(false))
+    } else {
+      getItemAction(
+        state && state.selectedProduct && state.selectedProduct.categoryId,
+        () => spinnerAction(false)
+      );
+    }
+
+
   }
 
   getData = (val) => {
@@ -55,20 +71,20 @@ class ProductOverview extends Component {
       match: {
         params: { id },
       },
-      location: { state },
       productPayload,
+      selectedProduct,
     } = this.props;
 
     const { quantity } = this.state;
     return (
       <React.Fragment>
-        {state && state.selectedProduct ? (
+        {selectedProduct && selectedProduct ? (
           <React.Fragment>
             <ItemDetail
-              name={state.selectedProduct.name}
-              description={state.selectedProduct.description}
-              cost={state.selectedProduct.price}
-              imgSrc={state.selectedProduct.icon}
+              name={selectedProduct.name}
+              description={selectedProduct.description}
+              cost={selectedProduct.price}
+              imgSrc={selectedProduct.icon}
               handleOnClick={(productPayload) =>
                 quantity === 0
                   ? notifyErrorToast("Please add at least one quantity!")
@@ -85,22 +101,39 @@ class ProductOverview extends Component {
             )}
           </React.Fragment>
         ) : (
-          <div style={{ height: "300px" }} />
+          <div className={styles.emptyProductContainer}>
+            <h1>Oops! No such Item available.</h1>
+          </div>
         )}
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = ({ itemsReducer }, { location: { state } }) => {
-  const getProductList =
-    itemsReducer?.itemData &&
-    itemsReducer?.itemData.filter((item) => {
-      return item._id !== state?.selectedProduct._id;
-    });
+const mapStateToProps = ({ itemsReducer }, { match: { params }, location: { state } }) => {
+  let getProductList;
+  let selectedProduct;
 
+  if (itemsReducer?.itemData !== undefined) {
+    getProductList =
+      itemsReducer?.itemData &&
+      itemsReducer?.itemData.filter((item) => {
+        return item._id !== params?.id;
+      });
+    if (state !== undefined) {
+      selectedProduct = state.selectedProduct;
+    } else {
+      if (params?.id) {
+        const [payload] = itemsReducer && itemsReducer?.itemData.filter(
+          (product) => product._id === params?.id
+        );
+        selectedProduct = payload
+      }
+    }
+  }
   return {
     productPayload: getProductList,
+    selectedProduct: selectedProduct
   };
 };
 
@@ -108,6 +141,7 @@ const mapDispatchToProps = {
   updateCheckoutListAction,
   getItemAction,
   spinnerAction,
+  getItemByIdAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductOverview);

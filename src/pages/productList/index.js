@@ -17,6 +17,8 @@ import ItemCard from "components/ItemCard";
 import { notifySuccessToast } from "utils/helperFunction";
 
 import styles from "./productList.module.scss";
+import { checkAdmin } from "utils/helperFunction";
+import { notifyErrorToast } from "utils/helperFunction";
 
 class ProductList extends Component {
   constructor(props) {
@@ -41,9 +43,16 @@ class ProductList extends Component {
       match: {
         params: { type },
       },
+      history,
       getItemAction,
       spinnerAction,
     } = this.props;
+
+    if (checkAdmin()) {
+      notifyErrorToast("Please login as cutomer")
+      return history.push("/")
+    };
+
     this.updateWindowDimensions();
 
     if (type !== undefined) {
@@ -126,7 +135,7 @@ class ProductList extends Component {
             </div>
           ) : (
             <div className={styles.emptyProductContainer}>
-              <h1>Oops! All item sold out.</h1>
+              <h1>Oops! No such category available.</h1>
             </div>
           )}
         </div>

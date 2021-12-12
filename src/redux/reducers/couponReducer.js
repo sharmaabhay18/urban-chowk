@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        couponData: { ...action.payload },
+
       };
     case Types.COUPON.DELETE_COUPON_ACTION_LOADING:
       return {
@@ -46,7 +46,7 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        couponData: { ...action.payload },
+
       };
     case Types.COUPON.ADD_COUPON_ACTION_LOADING:
       return {

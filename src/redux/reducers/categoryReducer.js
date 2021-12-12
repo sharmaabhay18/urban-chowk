@@ -26,7 +26,6 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        categoryData: [...action.payload],
       };
     case Types.CATEGORY.DELETE_CATEGORY_ACTION_LOADING:
       return {
@@ -46,7 +45,6 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        categoryData: [...action.payload],
       };
     case Types.CATEGORY.ADD_CATEGORY_ACTION_LOADING:
       return {

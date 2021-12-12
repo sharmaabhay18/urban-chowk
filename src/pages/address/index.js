@@ -11,8 +11,8 @@ import {
 import config from "utils/configConstant";
 import Button from "components/Button";
 
+import { checkAdmin } from "utils/helperFunction";
 import styles from "./address.module.scss";
-
 import AddressForm from "./addressForm";
 import AddressTile from "./addressTile";
 
@@ -29,7 +29,7 @@ class Address extends Component {
   componentDidMount() {
     const { getAddressAction, history } = this.props;
     const data = localStorage.getItem(config.AUTH_TOKEN);
-    if (!data) return history.push("/");
+    if (!data || checkAdmin()) return history.push("/");
     this.handleSpinner(true);
     getAddressAction(this.handleSpinner);
   }

@@ -12,6 +12,7 @@ import Button from "components/Button";
 
 import imageConstants from "utils/imageConstants";
 import config from "utils/configConstant";
+import { checkAdmin } from "utils/helperFunction"
 
 import NavigationBar from "./navigationBar";
 import styles from "./header.module.scss";
@@ -172,7 +173,6 @@ class Header extends Component {
   renderRightNavBar = () => {
     const { isHidden } = this.state;
     const data = localStorage.getItem(config.AUTH_TOKEN);
-    const isAdmin = localStorage.getItem(config.ROLE);
 
     return (
       <React.Fragment>
@@ -186,8 +186,7 @@ class Header extends Component {
               ? {
                 justifyContent: "space-evenly",
               }
-              : null,
-            isAdmin === "admin" ? { width: "30%", } : { width: "18%" }
+              : null
           }
         >
           {!isHidden && (
@@ -209,7 +208,7 @@ class Header extends Component {
           )}
           {data ? this.renderLoggedInHeader() : this.renderDefaultHeader()}
           {this.renderAdminHeader()}
-          <div
+          {!checkAdmin() && <div
             className={!isHidden ? styles.displayNone : styles.centerNavElement}
           >
             <div
@@ -227,7 +226,7 @@ class Header extends Component {
                 Cart
               </Link>
             </div>
-          </div>
+          </div>}
         </div>
         <div className={styles.iconContainer}>
           <div className={styles.cartIconContainer}>
@@ -251,11 +250,12 @@ class Header extends Component {
   };
 
   render() {
+
     return (
       <React.Fragment>
         <div className={styles.headerContainer}>
           {this.renderLogoAndButton()}
-          {this.renderSearchBar()}
+          {!checkAdmin() && this.renderSearchBar()}
           {this.renderRightNavBar()}
         </div>
         <NavigationBar />

@@ -26,7 +26,6 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        addressData: [...action.payload],
       };
     case Types.ADDRESS.DELETE_ADDRESS_ACTION_LOADING:
       return {
@@ -46,7 +45,6 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        addressData: [...action.payload],
       };
     case Types.ADDRESS.ADD_ADDRESS_ACTION_LOADING:
       return {
@@ -66,7 +64,6 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        addressData: [...action.payload],
       };
     default:
       return {

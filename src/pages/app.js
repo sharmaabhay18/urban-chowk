@@ -72,7 +72,7 @@ function App(props) {
           <Route exact path="/address" component={Address} />
           <Route
             exact
-            path="/admin-singup"
+            path="/admin-signup"
             component={(props) => <SignUp {...props} role="admin" />}
           />
           <Route exact path="/forgetPassword" component={ForgetPassword} />

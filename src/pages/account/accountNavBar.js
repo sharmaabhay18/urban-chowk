@@ -8,7 +8,7 @@ import classNames from "classnames";
 import { logoutAction } from "redux/actions";
 
 import { loadState, saveState } from "utils/localStorage";
-
+import { checkAdmin } from "utils/helperFunction"
 import Button from "components/Button";
 
 import styles from "./account.module.scss";
@@ -50,7 +50,7 @@ class AccountNavBar extends Component {
           Profile
         </Button>
 
-        <Button
+        {!checkAdmin() && <Button
           className={
             /^(\/order)/.test(pathname)
               ? classNames(styles.linkStyle, styles.linkBorder)
@@ -60,7 +60,7 @@ class AccountNavBar extends Component {
           onClick={() => history.push("/order-details")}
         >
           Orders
-        </Button>
+        </Button>}
 
         <Button
           className={styles.linkStyle}

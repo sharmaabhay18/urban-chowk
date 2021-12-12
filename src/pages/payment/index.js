@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Button from "components/Button";
-
+import { checkAdmin } from "utils/helperFunction";
 import PaymentMode from "./paymentMode";
 import CouponCode from "./couponCode";
 import config from "utils/configConstant";
@@ -28,7 +28,7 @@ class Payment extends Component {
   componentDidMount() {
     const { history } = this.props;
     const data = localStorage.getItem(config.AUTH_TOKEN);
-    if (!data) return history.push("/");
+    if (!data || checkAdmin()) return history.push("/");
   }
 
   handleCouponCode = (couponCode) => this.setState({ couponCode });

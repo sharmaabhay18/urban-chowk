@@ -2,8 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import { checkAdmin } from "utils/helperFunction"
 import CategoryCard from "components/CategoryCard";
 import styles from "./home.module.scss";
+import { notifyErrorToast } from "utils/helperFunction";
 
 const Category = ({ categoryData }) => {
   const history = useHistory();
@@ -29,10 +31,13 @@ const Category = ({ categoryData }) => {
                       imgSrc={category.icon}
                       subTitle={category.description}
                       handleOnClick={() => {
-                        history.push(`/category/${category.name}`, {
-                          title: `Category: ${category.name}`,
-                          id: category._id,
-                        });
+                        checkAdmin() ?
+                          notifyErrorToast("Please log in from customer account!")
+                          :
+                          history.push(`/category/${category.name}`, {
+                            title: `Category: ${category.name}`,
+                            id: category._id,
+                          });
                       }}
                     />
                   );

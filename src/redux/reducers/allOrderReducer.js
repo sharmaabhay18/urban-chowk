@@ -26,7 +26,6 @@ export default (state = initialState, action) => {
                 ...state,
                 fetching: false,
                 apiError: true,
-                allOrderData: [...action.payload],
             };
 
         default:

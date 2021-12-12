@@ -166,6 +166,13 @@ const Items = {
       throw error;
     }
   },
+  getItemsList: async (id) => {
+    try {
+      return await requests.get(`item/get/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 const Order = {

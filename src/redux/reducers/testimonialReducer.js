@@ -26,7 +26,6 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        testimonialData: [...action.payload],
       };
     case Types.TESTIMONIAL.DELETE_TESTIMONIAL_ACTION_LOADING:
       return {
@@ -46,7 +45,6 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        testimonialData: [...action.payload],
       };
     case Types.TESTIMONIAL.ADD_TESTIMONIAL_ACTION_LOADING:
       return {

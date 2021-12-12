@@ -24,6 +24,28 @@ const getItemAction = (id, handleSpinner) => async (dispatch) => {
   }
 };
 
+const getItemByIdAction = (id, handleSpinner) => async (dispatch) => {
+  dispatch({
+    type: Types.ITEMS.GET_ALL_ITEMS_BY_ID_ACTION_LOADING,
+    payload: null,
+  });
+
+  try {
+    const data = await agent.Items.getItemsList(id);
+    dispatch({
+      type: Types.ITEMS.GET_ALL_ITEMS_BY_ID_ACTION_SUCCESS,
+      payload: data?.data?.result?.data,
+    });
+    handleSpinner(false);
+  } catch (error) {
+    dispatch({
+      type: Types.ITEMS.GET_ALL_ITEMS_BY_ID_ACTION_FAILURE,
+      payload: null,
+    });
+    handleSpinner(false);
+  }
+};
+
 const addItemAction = (payload, history) => async (dispatch) => {
   dispatch({
     type: Types.ITEMS.ADD_ITEMS_ACTION_LOADING,
@@ -75,4 +97,4 @@ const deleteItemAction = (id, categoryId) => async (dispatch) => {
   }
 };
 
-export { getItemAction, deleteItemAction, addItemAction };
+export { getItemAction, deleteItemAction, addItemAction, getItemByIdAction };

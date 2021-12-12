@@ -23,6 +23,14 @@ const isAdminLoggedIn = (history) => {
   return history.push("/");
 };
 
+const checkAdmin = () => {
+  const data = localStorage.getItem(config.ROLE);
+  if (data === "admin") {
+    return true;
+  }
+  return false;
+};
+
 const toastOption = {
   position: "bottom-center",
   autoClose: 3000,
@@ -59,4 +67,5 @@ export {
   isUserAuthenticated,
   notifySuccessToast,
   notifyErrorToast,
+  checkAdmin
 };

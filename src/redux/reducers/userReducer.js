@@ -26,7 +26,6 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        userPayload: { ...action.payload },
       };
 
     case Types.USER.UPDATE_USER_ACTION_LOADING:

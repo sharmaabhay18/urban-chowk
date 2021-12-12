@@ -26,7 +26,6 @@ export default (state = initialState, action) => {
                 ...state,
                 fetching: false,
                 apiError: true,
-                orderData: [...action.payload],
             };
         case Types.ORDER.ADD_ORDER_ACTION_LOADING:
             return {

@@ -26,7 +26,25 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
+      };
+    case Types.ITEMS.GET_ALL_ITEMS_BY_ID_ACTION_LOADING:
+      return {
+        ...state,
+        apiError: false,
+        fetching: true,
+      };
+    case Types.ITEMS.GET_ALL_ITEMS_BY_ID_ACTION_SUCCESS:
+      return {
+        ...state,
+        fetching: false,
+        apiError: false,
         itemData: [...action.payload],
+      };
+    case Types.ITEMS.GET_ALL_ITEMS_BY_ID_ACTION_FAILURE:
+      return {
+        ...state,
+        fetching: false,
+        apiError: true,
       };
     case Types.ITEMS.DELETE_ITEMS_ACTION_LOADING:
       return {
@@ -46,7 +64,6 @@ export default (state = initialState, action) => {
         ...state,
         fetching: false,
         apiError: true,
-        itemData: [...action.payload],
       };
     case Types.ITEMS.ADD_ITEMS_ACTION_LOADING:
       return {

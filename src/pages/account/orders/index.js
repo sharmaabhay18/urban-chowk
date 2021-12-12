@@ -9,6 +9,8 @@ import AccountNavBar from "pages/account/accountNavBar";
 import AccountHeader from "pages/account/accountHeader";
 import OrderCard from "components/OrderCard";
 
+import { checkAdmin } from "utils/helperFunction"
+
 import styles from "./orders.module.scss";
 
 class Orders extends Component {
@@ -16,7 +18,7 @@ class Orders extends Component {
 
   componentDidMount() {
     const data = localStorage.getItem(config.AUTH_TOKEN);
-    if (!data) return this.props.history.push("/");
+    if (!data || checkAdmin()) return this.props.history.push("/");
 
     this.handleSpinner(true);
     this.props.getOrderAction(this.handleSpinner);
@@ -58,7 +60,7 @@ class Orders extends Component {
                           }
                         )
                       )}
-                      price={totalCost.toFixed(2)}
+                      price={totalCost && Number(totalCost).toFixed(2)}
                       paymentType={"COD"}
                       orderDate={moment(created_on).format("YYYY-MM-DD")}
                     />

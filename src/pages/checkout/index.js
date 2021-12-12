@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 
-import config from "utils/configConstant";
 import CheckoutCard from "components/CheckoutCard";
 import Button from "components/Button";
 
@@ -12,13 +11,12 @@ import {
   updateCounterCheckoutAction,
   updateOrderListAction,
 } from "redux/actions";
-import { notifyErrorToast } from "utils/helperFunction";
+import { notifyErrorToast, checkAdmin } from "utils/helperFunction";
 import styles from "./checkout.module.scss";
 
 class Checkout extends Component {
   componentDidMount() {
-    const data = localStorage.getItem(config.AUTH_TOKEN);
-    if (!data) return this.props.history.push("/");
+    if (checkAdmin()) return this.props.history.push("/");
     this.props.getCheckoutListAction();
   }
 
