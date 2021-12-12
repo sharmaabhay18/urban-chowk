@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { GiHamburgerMenu, GiShoppingCart } from "react-icons/gi";
 import { TiLocation } from "react-icons/ti";
-import { MdAccountCircle } from "react-icons/md";
+import { MdAccountCircle, MdOutlineDashboardCustomize } from "react-icons/md";
 import { FaUserAlt, FaHome } from "react-icons/fa";
 
 import Link from "components/Link";
@@ -114,6 +114,31 @@ class Header extends Component {
     </div>
   );
 
+  renderAdminHeader = () => {
+    const data = localStorage.getItem(config.ROLE);
+    if (data === "admin") {
+      return (
+        <div
+          className={
+            !this.state.isHidden
+              ? styles.expandedDefaultHeader
+              : styles.centerNavElement
+          }
+        >
+          <div
+            style={{ display: "flex" }}
+            onClick={!this.state.isHidden ? this.toggleSettings : undefined}
+          >
+            <MdOutlineDashboardCustomize className={styles.headerIconStyle} color="white" />
+            <Link className={styles.navTextStyle} to="/admin-dashboard">
+              Admin Dashboard
+        </Link>
+          </div>
+        </div>
+      )
+    }
+  }
+
   renderDefaultHeader = () => {
     const { isHidden } = this.state;
     return (
@@ -147,6 +172,8 @@ class Header extends Component {
   renderRightNavBar = () => {
     const { isHidden } = this.state;
     const data = localStorage.getItem(config.AUTH_TOKEN);
+    const isAdmin = localStorage.getItem(config.ROLE);
+
     return (
       <React.Fragment>
         <div
@@ -157,9 +184,10 @@ class Header extends Component {
           style={
             isHidden && data
               ? {
-                  justifyContent: "space-evenly",
-                }
-              : null
+                justifyContent: "space-evenly",
+              }
+              : null,
+            isAdmin === "admin" ? { width: "30%", } : { width: "18%" }
           }
         >
           {!isHidden && (
@@ -180,7 +208,7 @@ class Header extends Component {
             </div>
           )}
           {data ? this.renderLoggedInHeader() : this.renderDefaultHeader()}
-
+          {this.renderAdminHeader()}
           <div
             className={!isHidden ? styles.displayNone : styles.centerNavElement}
           >
@@ -218,7 +246,7 @@ class Header extends Component {
             />
           </div>
         </div>
-      </React.Fragment>
+      </React.Fragment >
     );
   };
 

@@ -1,9 +1,13 @@
+@import "stylesheets/responsive.scss";
+
 .mainContainer {
   display: flex;
   margin: 40px 100px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  
 }
 
 .btnContainer {
@@ -11,8 +15,15 @@
   flex-wrap: wrap;
   justify-content: space-around;
   margin-bottom: 100px;
+  
 }
 
 .buttonStyle {
   margin: 0px 5px;
+  @media #{$tablet_device} {
+    margin-bottom: 10px ;
+  }
+  @media #{$mobile_device} {
+    margin-bottom: 10px ;
+  }
 }
