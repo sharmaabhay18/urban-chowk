@@ -11,7 +11,7 @@ import { logoutAction } from "redux/actions";
 
 import Spinner from "components/Spinner";
 
-import Home from "pages/home";
+import Home from "pages/Home";
 import SignUp from "pages/signUp";
 import Login from "pages/login";
 import ProductList from "pages/productList";
@@ -25,6 +25,10 @@ import Profile from "pages/account/profile";
 import Order from "pages/account/orders";
 import AdminCoupon from "pages/adminCoupon";
 import AddCoupon from "pages/addCoupon";
+import AdminCategory from "pages/adminCategory";
+import AddCategory from "pages/addCategory";
+import AdminItem from "pages/adminItems";
+
 import Checkout from "pages/checkout";
 import Address from "pages/address";
 import AdminDelivery from "pages/adminDelivery"
@@ -92,6 +96,9 @@ function App({ spinnerState, logoutAction }) {
         <Route exact path="/admin-dashboard" component={AdminDashboard} />
         <Route exact path="/admin-testimonial" component={AdminTestimonial} />
         <Route exact path="/add-testimonial" component={AddTestimonial} />
+        <Route exact path="/admin-category" component={AdminCategory} />
+        <Route exact path="/add-category" component={AddCategory} />
+        <Route exact path="/admin-items" component={AdminItem} />
         <Route exact path="/add-coupon" component={AddCoupon} />
         <Route exact path="/admin-coupon" component={AdminCoupon} />
         <Route exact path="/address" component={Address} />

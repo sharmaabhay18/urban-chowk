@@ -8,9 +8,9 @@ import {
 } from "redux/actions";
 
 import Carousel from "components/Carousel";
-import Category from "pages/home/category";
-import TestimonialList from "pages/home/testimonialList";
-import QualityCheck from "pages/home/qualityCheck";
+import Category from "pages/Home/category";
+import TestimonialList from "pages/Home/testimonialList";
+import QualityCheck from "pages/Home/qualityCheck";
 
 const Home = ({ getCategoryAction, spinnerAction, getTestimonialAction }) => {
   useEffect(() => {

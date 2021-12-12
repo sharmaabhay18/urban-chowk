@@ -3,13 +3,18 @@ import agent from "config/agent";
 import { notifySuccessToast } from "utils/helperFunction";
 
 const getItemAction = (id, handleSpinner) => async (dispatch) => {
+  console.log("hi");
+  console.log(id);
   dispatch({
     type: Types.ITEMS.GET_ITEMS_ACTION_LOADING,
     payload: null,
   });
 
   try {
+    console.log("inside try");
+
     const data = await agent.Items.getAll(id);
+    console.log(data);
     dispatch({
       type: Types.ITEMS.GET_ITEMS_ACTION_SUCCESS,
       payload: data?.data?.result?.data,
