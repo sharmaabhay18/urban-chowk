@@ -36,7 +36,7 @@ const addCouponAction = (payload, history) => async (dispatch) => {
     if (result) {
       dispatch({
         type: Types.COUPON.ADD_COUPON_ACTION_SUCCESS,
-        payload: payload?.data?.result?.data,
+        payload: data?.data?.result?.data,
       });
       notifySuccessToast("Coupon added Successfully!");
       history.push("/admin-coupon");

@@ -25,6 +25,7 @@ import AdminCoupon from "pages/adminCoupon";
 import AddCoupon from "pages/addCoupon";
 import Checkout from "pages/checkout";
 import Address from "pages/address";
+import AdminDelivery from "pages/adminDelivery"
 
 import Header from "components/Header";
 import Footer from "components/Footer";
@@ -70,6 +71,7 @@ function App(props) {
           <Route exact path="/add-coupon" component={AddCoupon} />
           <Route exact path="/admin-coupon" component={AdminCoupon} />
           <Route exact path="/address" component={Address} />
+          <Route exact path="/admin-delivery" component={AdminDelivery} />
           <Route
             exact
             path="/admin-signup"

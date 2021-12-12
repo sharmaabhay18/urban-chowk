@@ -27,8 +27,28 @@ export default (state = initialState, action) => {
                 fetching: false,
                 apiError: true,
             };
+        case Types.ORDER.UPDATE_ORDER_STATUS_ACTION_LOADING:
+            return {
+                ...state,
+                apiError: false,
+                fetching: true,
+            };
+        case Types.ORDER.UPDATE_ORDER_STATUS_ACTION_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                apiError: false,
+                allOrderData: [...action.payload],
+            };
+        case Types.ORDER.UPDATE_ORDER_STATUS_ACTION_FAILURE:
+            return {
+                ...state,
+                fetching: false,
+                apiError: true,
+            };
 
         default:
             return state;
+
     }
 };

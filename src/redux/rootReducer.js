@@ -33,6 +33,7 @@ const rootReducer = combineReducers({
   allOrderReducer
 });
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
   if (action.type === "LOGOUT_ACTION_SUCCESS") {
     state.loginReducer = undefined;
@@ -40,6 +41,7 @@ export default (state, action) => {
     state.addressReducer = undefined;
     state.localOrderReducer = undefined;
     state.orderReducer = undefined;
+    state.allOrderReducer = undefined;
   }
   return rootReducer(state, action);
 };

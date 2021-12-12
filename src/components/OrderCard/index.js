@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 import styles from "./orderCard.module.scss";
 
@@ -8,8 +10,21 @@ export default class OrderCard extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+
+
   render() {
-    const { id, status, items, price, paymentType, orderDate } = this.props;
+
+    const { id, status, items, price, paymentType, orderDate, handleStatusUpdate, options } = this.props;
+
+    const _onSelect = (option) => {
+      handleStatusUpdate(option.label);
+    }
+
+    const defaultOption = () => {
+      if (options && status) {
+        return options.includes(status.toUpperCase()) ? status.toUpperCase() : options[0];
+      }
+    }
 
     const _renderOrderCardHeader = () => (
       <div className={styles.orderCardHeaderContainer}>
@@ -46,6 +61,11 @@ export default class OrderCard extends Component {
     const _renderLowerContent = () => (
       <div className={styles.orderCardLowerContentContainer}>
         <h4>Order Date: {orderDate}</h4>
+        {handleStatusUpdate &&
+          <div className={styles.statusStyle}>
+            <h4>Update Status  : </h4>
+            <Dropdown options={options} onChange={_onSelect} value={defaultOption()} placeholder="Select an option" />
+          </div>}
       </div>
     );
 
@@ -68,4 +88,5 @@ OrderCard.protoTypes = {
   price: PropTypes.number.isRequired,
   paymentType: PropTypes.string.isRequired,
   orderDate: PropTypes.string.isRequired,
+  handleStatusUpdate: PropTypes.func
 };

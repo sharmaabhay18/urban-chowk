@@ -1,6 +1,7 @@
 import Types from "utils/types";
 import agent from "config/agent";
 import { notifySuccessToast } from "utils/helperFunction";
+import { notifyErrorToast } from "utils/helperFunction";
 
 const getAdminOrderAction = (spinnerAction) => async (dispatch) => {
     dispatch({
@@ -77,6 +78,40 @@ const addOrderAction = (payload, history, handleSpinner) => async (dispatch) => 
     }
 };
 
+const updateOrderStatus = (payload, id, handleSpinner) => async (dispatch) => {
+    dispatch({
+        type: Types.ORDER.UPDATE_ORDER_STATUS_ACTION_LOADING,
+        payload: null,
+    });
+
+    const deliveryPayload = {
+        status: payload
+    }
+
+    try {
+        const data = await agent.Order.updateStatus(id, deliveryPayload);
+        const result = data?.data?.result?.data?.isUpdated;
+        if (result) {
+            const allOrder = await agent.Order.getAllOrder();
+            dispatch({
+                type: Types.ORDER.UPDATE_ORDER_STATUS_ACTION_SUCCESS,
+                payload: allOrder?.data?.result?.data,
+            });
+            notifySuccessToast("Order updated successfully!");
+            handleSpinner(false);
+        }
+    } catch (error) {
+        const errorMessage = error?.data?.message || "Something went wrong!";
+
+        handleSpinner(false);
+        notifyErrorToast(errorMessage);
+        dispatch({
+            type: Types.ORDER.UPDATE_ORDER_STATUS_ACTION_FAILURE,
+            payload: null,
+        });
+
+    }
+}
 
 
-export { addOrderAction, getOrderAction, getAdminOrderAction };
+export { addOrderAction, getOrderAction, getAdminOrderAction, updateOrderStatus };

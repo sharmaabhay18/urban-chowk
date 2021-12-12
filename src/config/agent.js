@@ -44,6 +44,7 @@ const requests = {
         throw e.response;
       });
   },
+
   put: async (url, body, tokenForAPI) => {
     return axios
       .put(URL.API_ROOT + url, body, tokenForAPI)
@@ -55,7 +56,7 @@ const requests = {
       });
   },
 
-  patch: async (url, body, tokenForAPI) => {
+  patch: (url, body, tokenForAPI) => {
     return axios
       .patch(URL.API_ROOT + url, body, tokenForAPI)
       .then((res) => {
@@ -94,6 +95,13 @@ const Auth = {
       throw e;
     }
   },
+  checkMobile: async (payload) => {
+    try {
+      return await requests.post("user/checkMobile", payload);
+    } catch (error) {
+      throw error;
+    }
+  }
 };
 
 const User = {
@@ -193,6 +201,13 @@ const Order = {
   add: async (payload) => {
     try {
       return await requests.post("order/add", payload);
+    } catch (error) {
+      throw error;
+    }
+  },
+  updateStatus: async (id, payload) => {
+    try {
+      return await requests.patch(`order/${id}`, payload);
     } catch (error) {
       throw error;
     }
