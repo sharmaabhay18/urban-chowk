@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-
 import "react-toastify/dist/ReactToastify.css";
 
 import { logoutAction } from "redux/actions";
@@ -36,36 +33,13 @@ import AdminDelivery from "pages/adminDelivery"
 import Header from "components/Header";
 import Footer from "components/Footer";
 import Error from "components/Error";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { loadState, saveState } from "utils/localStorage";
 
 import styles from "./app.module.scss";
 
 function App({ spinnerState, logoutAction }) {
 
-  const history = useHistory();
 
-  const location = useLocation()
 
-  useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        const persistedCheckoutItems = loadState();
-        const isDataCleared = new Promise((resolve, reject) => {
-          localStorage.clear();
-          resolve();
-        });
-        isDataCleared.then(() => {
-          saveState(persistedCheckoutItems);
-          logoutAction();
-          delete axios.defaults.headers.common["Authorization"];
-          return history.replace("/");
-        });
-
-      }
-    });
-  }, [location]);
 
   const renderSpinner = () => {
 
