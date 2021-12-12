@@ -1,11 +1,15 @@
 import { initializeApp } from "firebase/app";
+import axios from "axios";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  onIdTokenChanged
 } from "firebase/auth";
+
+import config from "utils/configConstant"
 
 const firebaseConfig = {
   apiKey: "AIzaSyB2odgYKZnrhyZk-vxgts55P_Re6CXyznA",
@@ -20,8 +24,19 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const auth = getAuth();
 
-// const db = app.firestore();
-// const googleProvider = auth.GoogleAuthProvider();
+
+const tokenListener = () => {
+  onIdTokenChanged(auth, async user => {
+    if (user) {
+      const token = await user.getIdToken();
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      localStorage.setItem(config.AUTH_TOKEN, token);
+    } else {
+      localStorage.clear();
+      delete axios.defaults.headers.common["Authorization"];
+    }
+  })
+}
 
 const registerWithEmailAndPassword = async (email, password) => {
   try {
@@ -62,35 +77,12 @@ const logout = async () => {
   }
 };
 
-// Social Login: Google
-// const signInWithGoogle = async () => {
-//   try {
-//     const res = await auth.signInWithPopup(googleProvider);
-//     const user = res.user;
-//     const query = await db
-//       .collection("users")
-//       .where("uid", "==", user.uid)
-//       .get();
-//     if (query.docs.length === 0) {
-//       await db.collection("users").add({
-//         uid: user.uid,
-//         name: user.displayName,
-//         authProvider: "google",
-//         email: user.email,
-//       });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     alert(err.message);
-//   }
-// };
 
 export {
   auth,
-  // signInWithGoogle,
-  // signInWithEmailAndPassword,
   registerWithEmailAndPassword,
   signInNormal,
   resetPassword,
   logout,
+  tokenListener
 };

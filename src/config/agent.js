@@ -1,4 +1,6 @@
 import axios from "axios";
+import { tokenListener } from "utils/firebase";
+
 import config from "../utils/configConstant";
 //This will check, which urls to use
 const develop = true;
@@ -18,6 +20,9 @@ if (develop) {
 } else {
   URL = Object.assign({}, CLOUD.SERVER);
 }
+
+
+tokenListener();
 
 const authToken = localStorage.getItem(config.AUTH_TOKEN);
 axios.defaults.headers.common["Authorization"] = `Bearer ${authToken}`;
