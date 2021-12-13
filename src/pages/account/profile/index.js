@@ -153,22 +153,22 @@ class Profile extends Component {
       <div className={styles.profileDetailSubContainer}>
         <div className={styles.profileDetailStyle}>
           <div>
-            <h4>Name: </h4>
-            <h4>Mobile: </h4>
-            <h4>Email:</h4>
+            <h3>Name: </h3>
+            <h3>Mobile: </h3>
+            <h3>Email:</h3>
           </div>
           <div>
             {isFromEdit ? (
               this.renderEditForm()
             ) : (
               <React.Fragment>
-                <h4>{userInfo ? userInfo.name : ""}</h4>
-                <h4>{userInfo ? userInfo.mobile : ""}</h4>
+                <h3>{userInfo ? userInfo.name : ""}</h3>
+                <h3>{userInfo ? userInfo.mobile : ""}</h3>
               </React.Fragment>
             )}
-            <h4 className={isFromEdit ? styles.emailStyleWhenEdit : null}>
+            <h3 className={isFromEdit ? styles.emailStyleWhenEdit : null}>
               {userInfo ? userInfo.email : ""}
-            </h4>
+            </h3>
           </div>
         </div>
         {isFromEdit ? (
@@ -225,7 +225,7 @@ class Profile extends Component {
               <AccountNavBar />
 
               <div className={styles.profileContainer}>
-                <h3>Profile Detials</h3>
+                <h2>Profile Details</h2>
                 <div className={styles.profileSubContainer}>
                   <div className={styles.avatarContainer}>
                     {isEdit ? (

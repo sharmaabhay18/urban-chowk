@@ -61,7 +61,7 @@ export default class QualityCheck extends Component {
 
     return !toggleWindow ? (
       <div className={styles.mainContainer}>
-        <h3 className={styles.headerStyle}>Quality Check</h3>
+        <h2 className={styles.headerStyle}>Quality Check</h2>
         <div>
           <ul className={styles.listContainer}>
             <li className={styles.listStyle}>Premium Produce Produce</li>

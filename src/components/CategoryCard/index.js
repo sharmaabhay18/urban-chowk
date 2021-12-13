@@ -16,7 +16,7 @@ export default class CategoryCard extends Component {
         />
         <div className={styles.categoryCardContentStyle}>
           <h2 className={styles.categoryCardTitleStyle}>{title}</h2>
-          <h6 className={styles.categoryCardSubTitleStyle}>{subTitle}</h6>
+          <span className={styles.categoryCardSubTitleStyle}>{subTitle}</span>
           {isDelete && (
             <div
               style={{
