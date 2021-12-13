@@ -8,7 +8,7 @@ import { logoutAction } from "redux/actions";
 
 import Spinner from "components/Spinner";
 
-import Home from "pages/home";
+import Home from "pages/Home";
 import SignUp from "pages/signUp";
 import Login from "pages/login";
 import ProductList from "pages/productList";
@@ -17,11 +17,17 @@ import Payment from "pages/payment";
 import ForgetPassword from "pages/forgetPassword";
 import AdminDashboard from "pages/adminDashboard";
 import AdminTestimonial from "pages/adminTestimonial";
+import AdminCategoryItems from "pages/adminCategoryItems";
 import AddTestimonial from "pages/addTestimonial";
 import Profile from "pages/account/profile";
 import Order from "pages/account/orders";
 import AdminCoupon from "pages/adminCoupon";
 import AddCoupon from "pages/addCoupon";
+import AdminCategory from "pages/adminCategory";
+import AddCategory from "pages/addCategory";
+import AddItems from "pages/addItems";
+import AdminItem from "pages/adminItems";
+
 import Checkout from "pages/checkout";
 import Address from "pages/address";
 import AdminDelivery from "pages/adminDelivery"
@@ -33,8 +39,6 @@ import Error from "components/Error";
 import styles from "./app.module.scss";
 
 function App({ spinnerState, logoutAction }) {
-
-
 
 
   const renderSpinner = () => {
@@ -66,10 +70,15 @@ function App({ spinnerState, logoutAction }) {
         <Route exact path="/admin-dashboard" component={AdminDashboard} />
         <Route exact path="/admin-testimonial" component={AdminTestimonial} />
         <Route exact path="/add-testimonial" component={AddTestimonial} />
+        <Route exact path="/admin-category" component={AdminCategory} />
+        <Route exact path="/add-category" component={AddCategory} />
+        <Route exact path="/add-items" component={AddItems} />
+        <Route exact path="/admin-items" component={AdminItem} />
         <Route exact path="/add-coupon" component={AddCoupon} />
         <Route exact path="/admin-coupon" component={AdminCoupon} />
         <Route exact path="/address" component={Address} />
         <Route exact path="/admin-delivery" component={AdminDelivery} />
+        <Route exact path="/admin-category-items" component={AdminCategoryItems} />
         <Route
           exact
           path="/admin-signup"

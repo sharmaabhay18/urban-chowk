@@ -25,14 +25,14 @@ const AdminDashboard = ({ userPayload }) => {
           Testimonial
         </Button>
         <Button
-          onClick={() => { }}
+          onClick={() => history.push("/admin-category")}
           variant="primary"
           className={styles.buttonStyle}
         >
           Category
         </Button>
         <Button
-          onClick={() => { }}
+          onClick={() => history.push("/admin-items")}
           variant="primary"
           className={styles.buttonStyle}
         >

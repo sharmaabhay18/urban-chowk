@@ -34,6 +34,8 @@ class ItemCard extends Component {
       itemKey,
       counterId,
       checkoutList,
+      isDelete, 
+      handleDelete 
     } = this.props;
 
     const itemDetail = {
@@ -70,6 +72,20 @@ class ItemCard extends Component {
                 quantityBoxStyle={styles.itemDetailQuantityBoxStyle}
                 quantityContainer={styles.itemDetailQuantityContainer}
               />
+            ) : isDelete ? (
+              <div
+                style={{
+                  margin: "10px 5px",
+                }}
+              >
+                <Button
+                  onClick={handleDelete}
+                  variant="primary"
+                  className={styles.buttonStyle}
+                >
+                  Delete
+                </Button>
+              </div>
             ) : (
               <Button
                 onClick={(event) => {
@@ -104,4 +120,6 @@ ItemCard.protoTypes = {
   price: PropTypes.string.isRequired,
   handleOnButtonClick: PropTypes.func.isRequired,
   handleOnCardClick: PropTypes.func.isRequired,
+  isDelete: PropTypes.bool,
+  handleDelete: PropTypes.func
 };

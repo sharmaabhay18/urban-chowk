@@ -84,6 +84,35 @@ export const AddTestimonialScehma = Yup.object().shape({
     .required("Image url is required"),
 });
 
+export const AddItemsScehma = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "Name is too short!")
+    .max(50, "Name is too long!")
+    .required("Name is required"),
+  icon: Yup.string().min(2, "Icon is too short!").required("Icon is required"),
+  description: Yup.string()
+    .min(2, "Description is too short!")
+    .required("Description is required"),
+  categoryId: Yup.string()
+    .min(24, "Category Id is too short!")
+    .max(24, "Category Id is too long!")
+    .required("Category Id is required"),
+  price: Yup.string()
+    .min(1, "Price is too short!")
+    .required("Price is required"),
+});
+
+export const AddCategoryScehma = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "Name is too short!")
+    .max(50, "Name is too long!")
+    .required("Name is required"),
+  icon: Yup.string().min(2, "Icon is too short!").required("Icon is required"),
+  description: Yup.string()
+    .min(2, "Description is too short!")
+    .required("Description is required"),
+});
+
 export const AddCouponScehma = Yup.object().shape({
   code: Yup.string()
     .min(2, "Code is too short!")
