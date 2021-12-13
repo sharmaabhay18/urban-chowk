@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { connect } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import EndpointMessage from "components/EndpointMessage";
 import InputField from "components/Input";
@@ -16,7 +16,6 @@ import styles from "./addCategory.module.scss";
 
 const AddCategory = ({ addCategoryAction, apiError, fetching }) => {
   const history = useHistory();
-  const location = useLocation();
   const form = {
     name: "",
     icon: "",
