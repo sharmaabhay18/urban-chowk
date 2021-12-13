@@ -8,23 +8,26 @@ import InputField from "components/Input";
 import Constants from "utils/constants";
 import Button from "components/Button";
 import Spinner from "components/Spinner";
-import { AddCategoryScehma } from "utils/formValidation";
-import { addCategoryAction } from "redux/actions";
+import { AddItemsScehma } from "utils/formValidation";
+import { addItemAction } from "redux/actions";
 
 import { isAdminLoggedIn } from "utils/helperFunction";
-import styles from "./addCategory.module.scss";
+import styles from "./addItems.module.scss";
 
-const AddCategory = ({ addCategoryAction, apiError, fetching }) => {
+const AddItems = ({ addItemAction, apiError, fetching }) => {
   const history = useHistory();
   const location = useLocation();
   const form = {
     name: "",
     icon: "",
     description: "",
+    categoryId: location.state.id,
+    price: ""
   };
 
   useEffect(() => {
     isAdminLoggedIn(history);
+    console.log(location.state.id);
   }, [history]);
 
   const renderButton = () => {
@@ -47,14 +50,14 @@ const AddCategory = ({ addCategoryAction, apiError, fetching }) => {
       <div className={styles.alignContainer}>
         <Formik
           initialValues={form}
-          validationSchema={AddCategoryScehma}
+          validationSchema={AddItemsScehma}
           onSubmit={(values) => {
-            addCategoryAction(values, history);
+            addItemAction(values, history);
           }}
           render={({ handleSubmit }) => (
             <Form onSubmit={handleSubmit} noValidate autoComplete="off">
               <div className={styles.formContainer}>
-                <h1>Add Category</h1>
+                <h1>Add Items</h1>
                 <Field
                   id="outlined-name-input"
                   type="text"
@@ -88,6 +91,27 @@ const AddCategory = ({ addCategoryAction, apiError, fetching }) => {
                   isRequired
                 />
 
+                <Field
+                  id="outlined-image_url-input"
+                  type="text"
+                  placeholder="Enter price"
+                  name="price"
+                  containerClassname={styles.containerStyle}
+                  inputClassName={styles.inputClassName}
+                  component={InputField}
+                  isRequired                
+                />
+
+                <Field
+                  id="outlined-image_url-input"
+                  type="text"
+                  placeholder="Category id"
+                  name="categoryId"
+                  containerClassname={styles.containerStyle}
+                  inputClassName={styles.inputClassName}
+                  component={InputField}
+                  isRequired                
+                />
 
                 <EndpointMessage
                   errorFlag={apiError}
@@ -104,14 +128,14 @@ const AddCategory = ({ addCategoryAction, apiError, fetching }) => {
 };
 
 const mapDispatchToProps = {
-  addCategoryAction,
+  addItemAction,
 };
 
-const mapStateToProps = ({ categoryReducer: categoryState }) => {
+const mapStateToProps = ({ itemsReducer: itemState }) => {
   return {
-    fetching: categoryState.fetching,
-    apiError: categoryState.apiError,
+    fetching: itemState.fetching,
+    apiError: itemState.apiError,
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddCategory);
+export default connect(mapStateToProps, mapDispatchToProps)(AddItems);

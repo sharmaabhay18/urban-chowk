@@ -1,46 +1,49 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { spinnerAction, getCategoryAction, deleteCategoryAction } from "redux/actions";
+import { spinnerAction, getItemAction, deleteItemAction } from "redux/actions";
 
 import { isAdminLoggedIn } from "utils/helperFunction";
 import Button from "components/Button";
 import Spinner from "components/Spinner";
-import CategoryCard from "components/CategoryCard";
+import ItemCard from "components/ItemCard";
 
-import styles from "./adminCategory.module.scss";
 
-const AdminCategory = ({
-  categoryData,
-  getCategoryAction,
+import styles from "./adminCategoryItems.module.scss";
+
+const AdminCategoryItems = ({
+  itemData,
+  getItemAction,
   fetching,
-  deleteCategoryAction,
+  deleteItemAction,
   spinnerAction
 }) => {
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     isAdminLoggedIn(history);
     spinnerAction(true);
-    getCategoryAction((val) => spinnerAction(val));
-  }, [getCategoryAction, history, spinnerAction]);
+    getItemAction(location.state.id, (val) => spinnerAction(val));
+
+  }, [getItemAction, history, spinnerAction]);
 
   const renderData = () => {
     return (
       <div className={styles.cardContainer}>
-        {categoryData &&
-          categoryData.map((item, index) => {
+        {itemData &&
+          itemData.map((item, index) => {
             return (
               <div style={{ margin: "20px" }} key={index}>
-                <CategoryCard
+                <ItemCard
                   title={item.name}
                   subTitle={item.description}
-                  avatar={item.icon}
+                  price={item.price}
                   imgSrc={item.icon}
                   isDelete={true}
                   handleDelete={() => {
-                    deleteCategoryAction(item._id);
+                    deleteItemAction(item._id, location.state.id);
                   }}
                 />
               </div>
@@ -60,14 +63,14 @@ const AdminCategory = ({
         Admin Dashboard
       </Button>
       <div className={styles.mainContainer}>
-        <h1>Admin Category</h1>
+        <h1>Admin Items</h1>
 
         <Button
-          onClick={() => history.push({pathname: "/add-category", state: {update: true} })}
+          onClick={() => history.push({pathname: "/add-items", state: {id: location.state.id} })}
           variant="primary"
           className={styles.buttonStyle}
         >
-          Add Category
+          Add Items
         </Button>
         {fetching ? (
           <div style={{ margin: "200px" }}>
@@ -82,19 +85,20 @@ const AdminCategory = ({
 };
 
 const mapDispatchToProps = {
-  getCategoryAction,
-  deleteCategoryAction,
+  getItemAction,
+  deleteItemAction,
   spinnerAction
 };
 
-const mapStateToProps = ({ categoryReducer: categoryState }) => {
-  const { categoryData } = categoryState;
-
+const mapStateToProps = ({ itemsReducer: itemState }) => {
+  const { itemData } = itemState;
+  console.log("itemsState", itemState);
+  console.log("itemsData", itemData);
   return {
-    fetching: categoryState.fetching,
-    apiError: categoryState.apiError,
-    categoryData,
+    fetching: itemState.fetching,
+    apiError: itemState.apiError,
+    itemData,
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminCategory);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminCategoryItems);

@@ -11,7 +11,6 @@ const getItemAction = (id, handleSpinner) => async (dispatch) => {
   });
 
   try {
-    console.log("inside try");
 
     const data = await agent.Items.getAll(id);
     console.log(data);
