@@ -9,9 +9,7 @@ const getCategoryAction = (handleSpinner) => async (dispatch) => {
   });
 
   try {
-    console.log("getcategory");
     const data = await agent.Category.getAll();
-    console.log(data);
     dispatch({
       type: Types.CATEGORY.GET_CATEGORY_ACTION_SUCCESS,
       payload: data?.data?.result?.data,
