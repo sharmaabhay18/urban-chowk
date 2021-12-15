@@ -11,6 +11,7 @@ import {
   updateCounterCheckoutAction,
   updateOrderListAction,
 } from "redux/actions";
+import config from "utils/configConstant";
 import { notifyErrorToast, checkAdmin } from "utils/helperFunction";
 import styles from "./checkout.module.scss";
 
@@ -26,6 +27,10 @@ class Checkout extends Component {
 
   handleProceedButton = () => {
     const { history, checkoutList, updateOrderListAction } = this.props;
+    const data = localStorage.getItem(config.AUTH_TOKEN);
+    if (!data) {
+      return notifyErrorToast("You need to login to proceed!");
+    }
 
     if (checkoutList !== undefined) {
       const itemPayload = checkoutList.map((item) =>

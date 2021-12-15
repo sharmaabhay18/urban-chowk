@@ -92,8 +92,6 @@ const mapDispatchToProps = {
 
 const mapStateToProps = ({ itemsReducer: itemState }) => {
   const { itemData } = itemState;
-  console.log("itemsState", itemState);
-  console.log("itemsData", itemData);
   return {
     fetching: itemState.fetching,
     apiError: itemState.apiError,

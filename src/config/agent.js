@@ -3,14 +3,14 @@ import { tokenListener } from "utils/firebase";
 
 import config from "../utils/configConstant";
 //This will check, which urls to use
-const develop = true;
+const develop = process.env.NODE_ENV === "development";
 
 const CLOUD = {
   LOCAL: {
     API_ROOT: "http://localhost:8080/",
   },
   SERVER: {
-    API_ROOT: "",
+    API_ROOT: process.env.REACT_APP_API,
   },
 };
 let URL = {};

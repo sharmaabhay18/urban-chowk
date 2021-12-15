@@ -2,7 +2,7 @@ const qualityLeftPayload = [
   {
     id: 1,
     title: "Premium produce, sourced directly from the origin",
-    description: `At Green Chick Chop, we work closely with our farmers to ensure the best ethically-raised breeds that are administered nutrient-rich feed under stringent biosecurity protocols. Utmost care at the source is what sets our quality beyond ordinary.`,
+    description: `We work closely with our farmers to ensure the best ethically-raised breeds that are administered nutrient-rich feed under stringent biosecurity protocols. Utmost care at the source is what sets our quality beyond ordinary.`,
     imgSrc:
       "https://firebasestorage.googleapis.com/v0/b/youngenginer-1c1ab.appspot.com/o/checks%2Ffarming.png?alt=media&token=42055197-c057-44d0-bb1f-7e6beab5d3c9",
   },

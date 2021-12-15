@@ -27,7 +27,6 @@ const AddItems = ({ addItemAction, apiError, fetching }) => {
 
   useEffect(() => {
     isAdminLoggedIn(history);
-    console.log(location.state.id);
   }, [history]);
 
   const renderButton = () => {

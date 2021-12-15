@@ -12,13 +12,13 @@ import {
 import config from "utils/configConstant"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB2odgYKZnrhyZk-vxgts55P_Re6CXyznA",
-  authDomain: "urban-chowk.firebaseapp.com",
-  projectId: "urban-chowk",
-  storageBucket: "urban-chowk.appspot.com",
-  messagingSenderId: "931550668356",
-  appId: "1:931550668356:web:9de76679ce9347e2b2be11",
-  measurementId: "G-VTG90816CK",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_PROJECT_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_MEASURE_ID
 };
 
 initializeApp(firebaseConfig);
