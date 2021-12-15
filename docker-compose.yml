@@ -1,0 +1,13 @@
+services:
+  app:
+    build: ./
+    container_name: urban-chowk-client
+    volumes:
+      - ./:/var/www/app
+      - /app/node_modules/
+      - /app/node_modules/node-sass/vendor
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+    command: sh -c 'npm i && npm start'
