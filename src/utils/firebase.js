@@ -10,6 +10,9 @@ import {
 } from "firebase/auth";
 
 import config from "utils/configConstant"
+
+require('dotenv').config()
+
 console.log("process.env.REACT_APP_FIREBASE_API_KEY", process.env.REACT_APP_FIREBASE_API_KEY);
 console.log("process.env.REACT_APP_FIREBASE_API_KEY", process.env.REACT_APP_FIREBASE_AUTH_DOMAIN);
 const firebaseConfig = {

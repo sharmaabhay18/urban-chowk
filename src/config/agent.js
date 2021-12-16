@@ -2,6 +2,9 @@ import axios from "axios";
 import { tokenListener } from "utils/firebase";
 
 import config from "../utils/configConstant";
+
+require('dotenv').config()
+
 //This will check, which urls to use
 const develop = process.env.NODE_ENV === "development";
 
