@@ -9,6 +9,10 @@ RUN npm rebuild node-sass --sass-binary-name=linux-x64-83
 
 COPY . ./
 
+ARG REACT_APP_NODE_ENV
+
+ENV REACT_APP_NODE_ENV $REACT_APP_NODE_ENV
+
 RUN npm run build
 
 ENV NODE_ENV=production

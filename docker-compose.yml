@@ -1,6 +1,10 @@
 services:
   app:
-    build: ./
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_NODE_ENV: ${REACT_APP_NODE_ENV}
     container_name: urban-chowk-client
     volumes:
       - ./:/var/www/app
