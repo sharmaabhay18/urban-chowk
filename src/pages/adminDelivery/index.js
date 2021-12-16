@@ -41,10 +41,8 @@ class Orders extends Component {
         return (
             <React.Fragment>
                 <div className={styles.mainContainer}>
-                    <h1></h1>
-                    <h2></h2>
-                    <div className={styles.orderContainer}>
-                        <h3>Orders</h3>
+                    <div className={styles.adminOrderContainer}>
+                        <h1>Orders</h1>
                         {customerOrder && customerOrder.length !== 0 ? (
                             customerOrder.map(
                                 ({
