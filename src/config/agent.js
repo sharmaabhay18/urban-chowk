@@ -14,7 +14,7 @@ const CLOUD = {
   },
 };
 let URL = {};
-
+console.log("process.env.REACT_APP_API", process.env.REACT_APP_API)
 if (develop) {
   URL = Object.assign({}, CLOUD.LOCAL);
 } else {
