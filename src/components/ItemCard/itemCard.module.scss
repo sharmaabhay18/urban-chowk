@@ -3,7 +3,7 @@
 
 .itemCardContainer {
   width: 250px;
-  height: 275px;
+  min-height: 275px;
   border: $primary-border;
   border-radius: 5px;
   cursor: pointer;
