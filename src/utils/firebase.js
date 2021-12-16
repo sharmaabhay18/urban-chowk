@@ -13,17 +13,17 @@ import config from "utils/configConstant"
 
 require('dotenv').config()
 
-console.log("node env====>", process.env.REACT_APP_NODE_ENV);
-console.log("firebase====>", process.env.REACT_APP_FIREBASE_API_KEY);
-console.log("process.env.REACT_APP_FIREBASE_API_KEY", process.env.REACT_APP_FIREBASE_AUTH_DOMAIN);
+console.log("node env====>", process.env.NODE_ENV);
+console.log("firebase====>", process.env.FIREBASE_API_KEY);
+console.log("process.env.FIREBASE_API_KEY", process.env.FIREBASE_AUTH_DOMAIN);
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_PROJECT_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_MEASURE_ID
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_PROJECT_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGE_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.MEASURE_ID
 };
 
 initializeApp(firebaseConfig);
