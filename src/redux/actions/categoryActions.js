@@ -40,7 +40,7 @@ const addCategoryAction = (payload, history) => async (dispatch) => {
       });
       notifySuccessToast("Category added Successfully!");
       //To-do: add nav after implemeting add func
-      //   history.push("/admin-testimonial");
+      history.push("/admin-category");
     }
   } catch (error) {
     dispatch({
