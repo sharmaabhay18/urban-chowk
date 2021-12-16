@@ -6,18 +6,18 @@ import config from "../utils/configConstant";
 require('dotenv').config()
 
 //This will check, which urls to use
-const develop = process.env.NODE_ENV === "development";
+const develop = process.env.REACT_APP_NODE_ENV === "development";
 
 const CLOUD = {
   LOCAL: {
     API_ROOT: "http://localhost:8080/",
   },
   SERVER: {
-    API_ROOT: process.env.API,
+    API_ROOT: process.env.REACT_APP_API,
   },
 };
 let URL = {};
-console.log("agent=====>", process.env.API)
+console.log("agent=====>", process.env.REACT_APP_API)
 if (develop) {
   URL = Object.assign({}, CLOUD.LOCAL);
 } else {

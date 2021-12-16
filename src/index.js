@@ -11,7 +11,7 @@ import App from "./pages/app";
 require('dotenv').config()
 
 console.log("starting app ========>");
-console.log("process====>", process.env.FIREBASE_API_KEY);
+console.log("process====>", process.env.REACT_APP_FIREBASE_API_KEY);
 
 ReactDOM.render(
   <Provider store={store}>

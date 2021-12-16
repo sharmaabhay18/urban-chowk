@@ -1,18 +1,6 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        NODE_ENV: ${NODE_ENV}
-        API: ${API}
-        FIREBASE_API_KEY: ${FIREBASE_API_KEY}
-        FIREBASE_AUTH_DOMAIN: ${FIREBASE_AUTH_DOMAIN}
-        FIREBASE_PROJECT_ID: ${FIREBASE_PROJECT_ID}
-        FIREBASE_PROJECT_BUCKET: ${FIREBASE_PROJECT_BUCKET}
-        FIREBASE_MESSAGE_ID: ${FIREBASE_MESSAGE_ID}
-        FIREBASE_APP_ID: ${FIREBASE_APP_ID}
-        MEASURE_ID: ${MEASURE_ID}
+    build: ./
     container_name: urban-chowk-client
     volumes:
       - ./:/var/www/app
@@ -21,6 +9,5 @@ services:
     ports:
       - 3000:3000
     environment:
-      env_file: .env
-      PORT: 3000
+      - PORT=8080
     command: sh -c 'npm i && npm start'
