@@ -22,7 +22,7 @@
   color: $white;
 }
 
-.orderCardHeaderContainer h4 {
+.orderCardHeaderContainer h2 .orderCardHeaderContainer h3 {
   font-size: 22px;
   font-family: $primary-font-family;
   letter-spacing: 0.4px;
@@ -81,7 +81,7 @@
   justify-content: space-between;
 }
 
-.orderCardRowItemContainer h4 {
+.orderCardRowItemContainer h4 .orderCardRowItemContainer h3 {
   @media #{$mobile_device} {
     font-size: 14px;
   }

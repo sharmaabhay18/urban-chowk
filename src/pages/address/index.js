@@ -55,7 +55,7 @@ class Address extends Component {
     return (
       <div className={styles.addressMainContainer}>
         <div className={styles.headerContainer}>
-          <h3>Select/Add Address </h3>
+          <h1>Select/Add Address </h1>
         </div>
         {!isEdit ? (
           <React.Fragment>

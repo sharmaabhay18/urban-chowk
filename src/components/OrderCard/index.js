@@ -28,8 +28,8 @@ export default class OrderCard extends Component {
 
     const _renderOrderCardHeader = () => (
       <div className={styles.orderCardHeaderContainer}>
-        <h4>Order Id: {id}</h4>
-        <h4>Status: {this.capitalizeFirstLetter(status.toLowerCase())}</h4>
+        <h2>Order Id: {id}</h2>
+        <h3>Status: {this.capitalizeFirstLetter(status.toLowerCase())}</h3>
       </div>
     );
 
