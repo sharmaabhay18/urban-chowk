@@ -36,7 +36,7 @@ class Orders extends Component {
         <div className={styles.mainContainer}>
           <AccountNavBar />
           <div className={styles.orderContainer}>
-            <h3>Orders</h3>
+            <h1>Orders</h1>
             {customerOrder && customerOrder.length !== 0 ? (
               customerOrder.map(
                 ({

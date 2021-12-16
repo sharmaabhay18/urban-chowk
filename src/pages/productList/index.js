@@ -90,9 +90,9 @@ class ProductList extends Component {
                 styles.productWrapTitleContainer
               )}
             >
-              <h3 style={{ textTransform: "capitalize", fontSize: "24px" }}>
+              <h1 style={{ textTransform: "capitalize", fontSize: "24px" }}>
                 {type}
-              </h3>
+              </h1>
             </div>
           </div>
           {fetching ? (

@@ -61,7 +61,7 @@ class Checkout extends Component {
     return (
       <div className={styles.checkoutMainContainer}>
         <div className={styles.headerContainer}>
-          <h3>Checkout Items</h3>
+          <h1>Checkout Items</h1>
           <Button
             className={styles.editButtonStyle}
             variant="secondary"

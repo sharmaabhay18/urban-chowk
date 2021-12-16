@@ -103,7 +103,7 @@ class LoginForm extends Component {
 
     return (
       <div className={styles.formContainer}>
-        <h4 className={styles.formHeaderStyle}>Login Page</h4>
+        <h1 className={styles.formHeaderStyle}>Login Page</h1>
         {renderEmailLogin()}
         <EndpointMessage
           errorFlag={(userPayload && userPayload.isError) || apiError}

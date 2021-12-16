@@ -87,7 +87,7 @@ class Payment extends Component {
     return (
       <div className={styles.paymentMainContainer}>
         <div className={styles.headerContainer}>
-          <h3>Payment</h3>
+          <h1>Payment</h1>
         </div>
         <CouponCode
           couponCode={couponCode}

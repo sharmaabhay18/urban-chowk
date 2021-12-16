@@ -59,10 +59,10 @@ class ItemCard extends Component {
       >
         <img src={imgSrc} alt="item" className={styles.itemCardImageStyle} />
         <div className={styles.itemCardContentContainer}>
-          <h5 className={styles.itemCardTitleStyle}>{title}</h5>
-          <h5 className={styles.itemCardSubTitleStyle}>{subTitle}</h5>
+          <div className={styles.itemCardTitleStyle}>{title}</div>
+          <div className={styles.itemCardSubTitleStyle}>{subTitle}</div>
           <div className={styles.itemCardFooterStyle}>
-            <h5 className={styles.itemCardPriceStyle}>$ {price}</h5>
+            <span className={styles.itemCardPriceStyle}>$ {price}</span>
             {getItem.length !== 0 && getItem.quantity !== 1 ? (
               <QuantityCounter
                 quantity={getItem[0].quantity}

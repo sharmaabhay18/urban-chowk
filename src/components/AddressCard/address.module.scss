@@ -30,7 +30,8 @@
   border-color: $primary-color;
 }
 
-.addressCardContainer h4 {
+.addressCardContainer h4,
+.addressCardContainer h2 {
   margin: 2px;
   font-size: $normal-font;
   font-family: $primary-font-family;

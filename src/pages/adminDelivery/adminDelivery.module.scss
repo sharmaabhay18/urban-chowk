@@ -39,6 +39,31 @@
   }
 }
 
+.adminOrderContainer {
+  margin: 10px 0px 0px 80px;
+  width: 90%;
+  @media #{$tablet_device} {
+    margin: 20px auto;
+    width: 90%;
+  }
+  @media #{$mobile_device} {
+    width: 90%;
+    margin: 20px auto;
+  }
+}
+
+.adminOrderContainer h1 {
+  color: $medium-grey;
+  font-weight: 600;
+  margin: 0;
+  padding-bottom: 2px;
+  border-bottom: 1px solid $medium-grey;
+
+  @media #{$mobile_device} {
+    margin-left: 6px;
+  }
+}
+
 .alignCenter {
   display: flex;
   justify-content: center;

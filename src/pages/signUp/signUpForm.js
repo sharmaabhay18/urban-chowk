@@ -48,7 +48,7 @@ export default class SignUpForm extends Component {
           render={({ handleSubmit }) => (
             <Form onSubmit={handleSubmit} noValidate autoComplete="off">
               <div className={styles.formContainer}>
-                <h4>SIGN UP</h4>
+                <h1>SIGN UP</h1>
                 <Field
                   id="outlined-name-input"
                   type="text"

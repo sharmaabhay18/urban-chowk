@@ -11,7 +11,7 @@ import styles from "./footer.module.scss";
 class Footer extends Component {
   renderAddressComponent = () => (
     <div className={styles.footerAddressContainer}>
-      <h4>Contact Info</h4>
+      <h2>Contact Info</h2>
       <ul>
         <li className={styles.footerListItemStyle}>Urban Chowk Pvt Ltd</li>
         <li className={styles.footerListItemStyle}>525 River St,</li>
@@ -24,7 +24,7 @@ class Footer extends Component {
   renderSocialComponent = () => (
     <div className={styles.footerSocialContainer}>
       <div>
-        <h4>Follow Us On</h4>
+        <h3>Follow Us On</h3>
         <div className={styles.footerSocialIconContainer}>
           <Link to={footerConstants.FACEBOOK_LINK}>
             <img

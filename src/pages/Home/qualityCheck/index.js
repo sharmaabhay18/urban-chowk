@@ -61,7 +61,7 @@ export default class QualityCheck extends Component {
 
     return !toggleWindow ? (
       <div className={styles.mainContainer}>
-        <h3 className={styles.headerStyle}>Quality Check</h3>
+        <h2 className={styles.headerStyle}>Quality Check</h2>
         <div>
           <ul className={styles.listContainer}>
             <li className={styles.listStyle}>Premium Produce Produce</li>
@@ -84,7 +84,7 @@ export default class QualityCheck extends Component {
       </div>
     ) : (
       <div className={styles.expandedMainContainer}>
-        <h3 className={styles.expandedHeaderStyle}>Quality Check</h3>
+        <h2 className={styles.expandedHeaderStyle}>Quality Check</h2>
         <GrClose
           className={styles.closeIconStyle}
           onClick={() => this.setState({ toggleWindow: false })}
@@ -98,10 +98,10 @@ export default class QualityCheck extends Component {
                   alt="alt"
                   className={styles.contentImageStyle}
                 />
-                <h4 className={styles.qualityHeaderStyle}>{item.title}</h4>
-                <h5 className={styles.qualityParagraphStyle}>
+                <h3 className={styles.qualityHeaderStyle}>{item.title}</h3>
+                <h4 className={styles.qualityParagraphStyle}>
                   {item.description}
-                </h5>
+                </h4>
               </div>
             ))}
           </div>
@@ -114,10 +114,10 @@ export default class QualityCheck extends Component {
                   alt="alt"
                   className={styles.contentImageStyle}
                 />
-                <h4 className={styles.qualityHeaderStyle}>{item.title}</h4>
-                <h5 className={styles.qualityParagraphStyle}>
+                <h3 className={styles.qualityHeaderStyle}>{item.title}</h3>
+                <h4 className={styles.qualityParagraphStyle}>
                   {item.description}
-                </h5>
+                </h4>
               </div>
             ))}
           </div>
