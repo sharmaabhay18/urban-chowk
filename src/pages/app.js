@@ -8,7 +8,7 @@ import { logoutAction } from "redux/actions";
 
 import Spinner from "components/Spinner";
 
-import Home from "pages/Home";
+import Home from "pages/home";
 import SignUp from "pages/signUp";
 import Login from "pages/login";
 import ProductList from "pages/productList";
