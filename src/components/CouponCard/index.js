@@ -11,7 +11,7 @@ export default class CouponCard extends Component {
       <div className={styles.cardContainer}>
         <div className={styles.cardContentStyle}>
           <h2 className={styles.cardNameStyle}>{name.toUpperCase()}</h2>
-          <h2 className={styles.cardNameStyle}>{discount}</h2>
+          <h2 className={styles.cardNameStyle}>{discount}%</h2>
           {isDelete && (
             <div
               style={{

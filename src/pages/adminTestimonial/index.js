@@ -60,7 +60,7 @@ const AdminTestimonial = ({
         Admin Dashboard
       </Button>
       <div className={styles.mainContainer}>
-        <h1>Admin Testimonial</h1>
+        <h1 style={{ textAlign: "center" }}>Admin Testimonial</h1>
 
         <Button
           onClick={() => history.push("/add-testimonial")}
