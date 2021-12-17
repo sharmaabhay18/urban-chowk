@@ -30,6 +30,7 @@ import AccountNavBar from "pages/account/accountNavBar";
 import AccountHeader from "pages/account/accountHeader";
 
 import styles from "./profile.module.scss";
+import { notifySuccessToast } from "utils/helperFunction";
 
 const storage = getStorage();
 
@@ -48,7 +49,7 @@ class Profile extends Component {
 
   onClose = () => this.setState({ preview: null });
 
-  onCrop = (preview) => this.setState({ preview });
+  onCrop = (preview) => this.setState({ preview: preview });
 
   onBeforeFileLoad = (elem) => {
     if (elem.target.files[0].size > 500000) {
@@ -60,22 +61,16 @@ class Profile extends Component {
   handleSpinner = (flag) => this.props.spinnerAction(flag);
   handleFormEdit = (val) => this.setState({ isFromEdit: val });
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.userInfo !== this.props.userInfo) {
-      this.props.spinnerAction(false);
-    }
-    if (this.props.userInfo && this.props.userInfo.mobile) {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.userInfo !== undefined && nextProps.userInfo.mobile !== undefined) {
       getDownloadURL(
-        ref(storage, `image/${this.props.userInfo.mobile + ".jpeg"}`)
+        ref(storage, `image/${nextProps.userInfo.mobile + ".jpeg"}`)
       )
         .then((url) => {
           this.setState({
             preview: url,
           });
         })
-        .catch((err) => {
-          // console.log(err);
-        });
     }
   }
 
@@ -85,6 +80,15 @@ class Profile extends Component {
     if (!data) return history.push("/");
     this.handleSpinner(true);
     this.props.getUserInfoAction(this.handleSpinner);
+
+    this.props.userInfo && this.props.userInfo.mobile && getDownloadURL(
+      ref(storage, `image/${this.props.userInfo.mobile + ".jpeg"}`)
+    )
+      .then((url) => {
+        this.setState({
+          preview: url,
+        });
+      })
   }
 
   handleApiCall = () => {
@@ -261,7 +265,7 @@ class Profile extends Component {
                             profileImage,
                             "data_url"
                           ).then((snapshot) => {
-                            console.log("Uploaded a blob or file!");
+                            notifySuccessToast("Image uploaded successfully")
                           });
 
                           getDownloadURL(

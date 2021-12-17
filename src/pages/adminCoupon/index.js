@@ -59,7 +59,7 @@ const AdminCoupon = ({
         Admin Dashboard
       </Button>
       <div className={styles.mainContainer}>
-        <h1>Admin Coupon</h1>
+        <h1 style={{ textAlign: "center" }}>Admin Coupon</h1>
 
         <Button
           onClick={() => history.push("/add-coupon")}
