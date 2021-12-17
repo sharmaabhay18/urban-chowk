@@ -63,10 +63,10 @@ const AdminCategoryItems = ({
         Admin Dashboard
       </Button>
       <div className={styles.mainContainer}>
-        <h1>Admin Items</h1>
+        <h1 style={{ textAlign: "center" }}>Admin Items</h1>
 
         <Button
-          onClick={() => history.push({pathname: "/add-items", state: {id: location.state.id} })}
+          onClick={() => history.push({ pathname: "/add-items", state: { id: location.state.id } })}
           variant="primary"
           className={styles.buttonStyle}
         >

@@ -58,7 +58,7 @@ const AdminCategory = ({
         Admin Dashboard
       </Button>
       <div className={styles.mainContainer}>
-        <h1>Select a category below to view it's Items</h1>
+        <h1 style={{ textAlign: "center" }}>Select a category below to view it's Items</h1>
         {fetching ? (
           <div style={{ margin: "200px" }}>
             <Spinner scale={0.4} color="#ea1a20" />

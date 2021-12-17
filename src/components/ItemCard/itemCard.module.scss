@@ -10,7 +10,7 @@
   @media #{$mobile_device} {
     font-size: $normal-font-mobile;
     width: 300px;
-    height: 300px;
+    min-height: 300px;
     display: inline-block;
     text-align: start;
   }

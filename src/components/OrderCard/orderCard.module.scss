@@ -22,7 +22,26 @@
   color: $white;
 }
 
-.orderCardHeaderContainer h2 .orderCardHeaderContainer h3 {
+.orderCardHeaderContainer h2 {
+  font-size: 22px;
+  font-family: $primary-font-family;
+  letter-spacing: 0.4px;
+  @media #{$tablet_device} {
+    font-size: $large-font-tablet;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media #{$mobile_device} {
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media (min-width: 0) and (max-width: 340px) {
+    font-size: 12px;
+  }
+}
+
+.orderCardHeaderContainer h3 {
   font-size: 22px;
   font-family: $primary-font-family;
   letter-spacing: 0.4px;
@@ -97,11 +116,11 @@
 
 .orderCardLowerContentContainer h4 {
   @media #{$mobile_device} {
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 700;
   }
   @media (min-width: 0) and (max-width: 340px) {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 

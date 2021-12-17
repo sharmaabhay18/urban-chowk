@@ -67,7 +67,7 @@ class Header extends Component {
             className={styles.primaryIconStyle}
           />
         </Link>
-        <div className={styles.locationButtonContainer}>
+        <div onClick={() => this.props.history.push("/")} className={styles.locationButtonContainer}>
           <TiLocation className={styles.locationIconStyle} color="white" />
           <Button className={styles.headerButtonStyle}>Hoboken, NJ</Button>
         </div>

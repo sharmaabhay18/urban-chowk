@@ -60,7 +60,7 @@ const AdminCategory = ({
         Admin Dashboard
       </Button>
       <div className={styles.mainContainer}>
-        <h1>Admin Category</h1>
+        <h1 style={{ textAlign: "center" }}>Admin Category</h1>
 
         <Button
           onClick={() => history.push({pathname: "/add-category", state: {update: true} })}
