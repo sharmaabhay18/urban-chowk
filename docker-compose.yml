@@ -1,6 +1,8 @@
 services:
   app:
-    build: ./
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: urban-chowk-client
     volumes:
       - ./:/var/www/app
@@ -9,5 +11,6 @@ services:
     ports:
       - 3000:3000
     environment:
-      - PORT=3000
+      env_file: .env
+      PORT: 3000
     command: sh -c 'npm i && npm start'

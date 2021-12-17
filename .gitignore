@@ -15,6 +15,7 @@ dump.rdb
 # misc
 .DS_Store
 .env
+.env.prod
 .env.local
 .env.development.local
 .env.test.local

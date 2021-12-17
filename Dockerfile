@@ -7,9 +7,13 @@ COPY package*.json ./
 RUN npm install
 RUN npm rebuild node-sass --sass-binary-name=linux-x64-83
 
-COPY . ./
+COPY . .
 
 RUN npm run build
+
+ENV NODE_ENV=production
+
+EXPOSE 80
 
 FROM nginx:1.17-alpine
 RUN apk --no-cache add curl

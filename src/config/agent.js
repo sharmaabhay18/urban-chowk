@@ -2,8 +2,11 @@ import axios from "axios";
 import { tokenListener } from "utils/firebase";
 
 import config from "../utils/configConstant";
+
+require('dotenv').config()
+
 //This will check, which urls to use
-const develop = process.env.NODE_ENV === "development";
+const develop = process.env.REACT_APP_NODE_ENV === "development";
 
 const CLOUD = {
   LOCAL: {
@@ -14,7 +17,6 @@ const CLOUD = {
   },
 };
 let URL = {};
-
 if (develop) {
   URL = Object.assign({}, CLOUD.LOCAL);
 } else {
