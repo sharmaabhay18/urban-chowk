@@ -7,7 +7,7 @@ export default class AccountHeader extends Component {
     const { routeName } = this.props;
     return (
       <div className={styles.accountHeaderContainer}>
-        <h4>Home / {routeName}</h4>
+        <h1>Home / {routeName}</h1>
       </div>
     );
   }

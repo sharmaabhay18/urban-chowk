@@ -17,16 +17,16 @@ export default class AddressCard extends Component {
     } = this.props;
     return (
       <div className={styles.addressCardContainer} onClick={handleOnClick}>
-        <h4 className={styles.addressNameStyle}>{name}</h4>
-        <h4 className={styles.addressCardAddressStyle}>{address}</h4>
-        <h4 className={styles.addressCardAddressStyle}>
+        <h2 className={styles.addressNameStyle}>{name}</h2>
+        <h2 className={styles.addressCardAddressStyle}>{address}</h2>
+        <h2 className={styles.addressCardAddressStyle}>
           {state} , {city}
-        </h4>
-        <h4 className={styles.addressCardAddressStyle}>{pincode}</h4>
+        </h2>
+        <h2 className={styles.addressCardAddressStyle}>{pincode}</h2>
         {landmark && (
-          <h4 className={styles.addressCardLandmarkStyle}>
+          <h2 className={styles.addressCardLandmarkStyle}>
             Landmark: {landmark}
-          </h4>
+          </h2>
         )}
         <Button
           onClick={(e) => {

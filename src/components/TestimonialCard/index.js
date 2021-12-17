@@ -24,9 +24,9 @@ export default class TestimonialCard extends Component {
             />
             <h2 className={styles.testimonialCardNameStyle}>{name}</h2>
           </div>
-          <h6 className={styles.testimonialCardDescriptionStyle}>
+          <span className={styles.testimonialCardDescriptionStyle}>
             {description}
-          </h6>
+          </span>
           {isDelete && (
             <div
               style={{

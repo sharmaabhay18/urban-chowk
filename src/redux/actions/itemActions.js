@@ -63,7 +63,7 @@ const addItemAction = (payload, history) => async (dispatch) => {
       });
       notifySuccessToast("Items added Successfully!");
       //To-do: add nav after implemeting add func
-      //   history.push("/admin-testimonial");
+      history.push("/admin-items");
     }
   } catch (error) {
     dispatch({

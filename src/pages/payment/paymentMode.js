@@ -7,7 +7,7 @@ export default class PaymentMode extends Component {
     return (
       <div className={styles.modeContainer}>
         <div className={styles.paymentStyle}>
-          <h3>Payment Mode - Cash On Delivery</h3>
+          <h2>Payment Mode - Cash On Delivery</h2>
           <p>We are currently accepting only cash on delivery</p>
         </div>
       </div>

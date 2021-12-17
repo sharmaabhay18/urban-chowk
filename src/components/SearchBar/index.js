@@ -32,7 +32,7 @@ class SearchBar extends Component {
     };
 
     return (
-      <Select
+      <label><Select
         value=""
         onChange={(searchItem) => {
           const [selectedProduct] = itemData.filter(
@@ -52,7 +52,7 @@ class SearchBar extends Component {
         options={payload}
         styles={selectStyles}
         components={{ ValueContainer }}
-      />
+      /></label>
     );
   }
 }
@@ -94,6 +94,10 @@ const selectStyles = {
   }),
   indicatorsContainer: (base) => ({
     display: "none",
+  }),
+  placeholder: (base) => ({
+    ...base,
+    color: "#767676"
   }),
   menu: (base) => ({
     ...base,

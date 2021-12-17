@@ -43,7 +43,7 @@ class ForgetPassword extends Component {
           {({ handleSubmit }) => (
             <Form onSubmit={handleSubmit} noValidate autoComplete="off">
               <div className={styles.formContainer}>
-                <h4>Forget Password</h4>
+                <h1>Forget Password</h1>
                 <Field
                   id="outlined-email-input"
                   type="email"

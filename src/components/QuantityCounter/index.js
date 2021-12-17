@@ -52,7 +52,7 @@ export default class QuantityCounter extends Component {
           quantityContainer ? quantityContainer : styles.quantityContainer
         }
       >
-        <h4 className={quantityHeaderStyle && quantityHeaderStyle}>Quantity</h4>
+        <span className={quantityHeaderStyle && quantityHeaderStyle}>Quantity</span>
         <button
           onClick={this._handleDecrement}
           className={
@@ -62,10 +62,10 @@ export default class QuantityCounter extends Component {
           {" "}
           -{" "}
         </button>
-        <h4 className={quantityHeaderStyle && quantityHeaderStyle}>
+        <span className={quantityHeaderStyle && quantityHeaderStyle}>
           {" "}
           {this.state.quantityPaylod.quantity}
-        </h4>
+        </span>
         <button
           onClick={this._handleIncrement}
           className={

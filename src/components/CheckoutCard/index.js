@@ -15,8 +15,8 @@ export default class CheckoutCard extends Component {
   ) => (
     <div className={styles.checkoutCardLeftContent}>
       <div>
-        <h3>{title}</h3>
-        <h4>{description}</h4>
+        <h2>{title}</h2>
+        <h3>{description}</h3>
       </div>
       <Button
         className={styles.checkoutButtonStyle}
