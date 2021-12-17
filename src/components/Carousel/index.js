@@ -59,7 +59,7 @@ export default class Carousel extends Component {
           <div className={styles.carouselMainContainer}>
             <div className={styles.carouselMainContainer}>
               <div className={styles.carouselTextContainer}>
-                <h1>Best Quality Food Delivery With All Safety Checks</h1>
+                <h1>Best Quality Food Delivery With All Safety Checks.</h1>
               </div>
               {this.renderCarousel()}
             </div>
