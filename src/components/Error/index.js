@@ -11,7 +11,7 @@ function Error() {
       <div className={style.errorContainer}>
         <h1>Error Resource Not Found</h1>
         <p>No data/route available... the sadness.</p>
-        <Button text="Go Home" onClick={() => history.replace("/")} />
+        <Button onClick={() => history.replace("/")} >Go Home</Button>
       </div>
     </React.Fragment>
   );

@@ -24,7 +24,7 @@
 1. Make sure you have installed heroku cli at global level.
 2. Make sure you are logged in heroku cli if not use this command `heroku container:login`.
 3. Point *REACT_APP_NODE_ENV* to **production** in `.env` file.
-4. Run command `heroku container:push web --app urban-chowk-fe ` to push the docker to heroku server, where `urban-chowk-fe` is the name of the app that we created using cmd `heroku create urban-chowk-fe`
+4. Run command `heroku container:push web --app urban-chowk-fe` to push the docker to heroku server, where `urban-chowk-fe` is the name of the app that we created using cmd `heroku create urban-chowk-fe`
 5. Release the app using cmd `heroku container:release web --app urban-chowk-fe`.
 6. Finally run the cmd `heroku open --app urban-chowk-fe` which will open the app in browser at [https://urban-chowk-fe.herokuapp.com/]
 
