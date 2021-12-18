@@ -40,8 +40,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docker": "docker build -t urban-chowk .",
-    "react-docker": "docker run -p 3000:80 urban-chowk"
+    "build-docker": "docker build -t urban-chowk .",
+    "run-docker": "docker run -p 3000:80 urban-chowk"
   },
   "eslintConfig": {
     "extends": [

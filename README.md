@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Getting Started with Urban Chowk Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> App is hosted at https://urban-chowk-fe.herokuapp.com/
+## Note 
+ - Make sure server is up and running and it's open at [http://localhost:8080/]
+ - Please clear Redis server when running locally to avoid any error/warning.
+ - App will take few seconds to load for the first time if you open the production app at[https://urban-chowk-fe.herokuapp.com/] as the servers cold starts at [https://urban-chowk-server.herokuapp.com/]
 
-## Available Scripts
+## Running App Locally
 
-In the project directory, you can run:
+1. Make sure you have `.env` file and *REACT_APP_NODE_ENV* is pointing to **developemt**.
+2. Run command `npm install` in root directory of project.
+3. Run command `npm start` to start the application and is available at [http://localhost:3000].
 
-### `npm start`
+## Running App Locally in Docker
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Make sure you have `.env` file and *REACT_APP_NODE_ENV* is pointing to developemt.
+2. Make sure you have docker installed, up and running.
+3. Build the docker using `npm run build-docker` command.
+4. Finally Run command `npm run run-docker` command to start the application and open [http://localhost:3000] in browser. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Depolying app on heroku using docker
 
-### `npm test`
+1. Make sure you have installed heroku cli at global level.
+2. Make sure you are logged in heroku cli if not use this command `heroku container:login`.
+3. Point *REACT_APP_NODE_ENV* to **production** in `.env` file.
+4. Run command `heroku container:push web --app urban-chowk-fe ` to push the docker to heroku server, where `urban-chowk-fe` is the name of the app that we created using cmd `heroku create urban-chowk-fe`
+5. Release the app using cmd `heroku container:release web --app urban-chowk-fe`.
+6. Finally run the cmd `heroku open --app urban-chowk-fe` which will open the app in browser at [https://urban-chowk-fe.herokuapp.com/]
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Checking logs for client use this command `heroku logs --tail --app urban-chowk-fe`. Make sure you are logged in.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technolgoies used in front end application
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Redux for global state mangement and caching checkout and order details.
+- Firebase for Email/Password authentication and Firebase Storage for storing user's profile picture.
+- Docker for containerization.
+- Heroku for deploying our application.
