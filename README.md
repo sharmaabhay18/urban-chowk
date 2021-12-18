@@ -1,6 +1,7 @@
 # Getting Started with Urban Chowk Client
 
-> App is hosted at https://urban-chowk-fe.herokuapp.com/
+> - Github Link => https://github.com/sharmaabhay18/urban-chowk
+> - App is hosted at https://urban-chowk-fe.herokuapp.com/
 ## Note 
  - Make sure server is up and running and it's open at [http://localhost:8080/]
  - Please clear Redis server when running locally to avoid any error/warning.
