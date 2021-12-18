@@ -20,7 +20,7 @@ class ForgetPassword extends Component {
         {this.props.fetching ? (
           <Spinner scale={0.4} color="#ea1a20" />
         ) : (
-          "Login"
+          "Submit"
         )}
       </Button>
     );
@@ -43,7 +43,7 @@ class ForgetPassword extends Component {
           {({ handleSubmit }) => (
             <Form onSubmit={handleSubmit} noValidate autoComplete="off">
               <div className={styles.formContainer}>
-                <h1>Forget Password</h1>
+                <h1>Forgot Password</h1>
                 <Field
                   id="outlined-email-input"
                   type="email"
