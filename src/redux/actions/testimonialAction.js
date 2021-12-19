@@ -32,7 +32,7 @@ const addTestimonialAction = (payload, history) => async (dispatch) => {
 
   try {
     const data = await agent.Testimonial.add(payload);
-    const result = data?.data?.result?.data?.isCreater;
+    const result = data?.data?.result?.data?.isCreated;
     if (result) {
       dispatch({
         type: Types.TESTIMONIAL.ADD_TESTIMONIAL_ACTION_SUCCESS,
